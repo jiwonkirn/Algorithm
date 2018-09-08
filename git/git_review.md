@@ -61,6 +61,12 @@
 
     git commit -m "commit내용" 
     // staging area에 올라온 파일들을 "commit내용"이라는 묶음으로 repository에 올린다.
+
+    git checkout commit고유번호
+    //해당 고유번호의 commit으로 돌아간다.
+
+    git checkout master
+    //최신 커밋으로 돌아온다.
 ```
 
 <br>
