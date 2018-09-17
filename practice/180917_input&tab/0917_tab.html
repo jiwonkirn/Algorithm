@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/icon-font.css">
+    <link rel="stylesheet" href="css/0917_tab.css">
+    <title>검색 및 탭메뉴</title>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+    <script defer src="js/0917_tab.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="search">
+            <form action="#" method="POST" class="search-form">
+                <h2 class="readable-hidden">검색박스</h2>
+                <fieldset>
+                    <legend class="readable-hidden">검색</legend>
+                        <label class="icon-dot-circled" for="search-box">자료검색</label>
+                        <input type="search" id="search-box" placeholder="검색어를 입력하세요" required>
+                        <button type="submit" class="search-btn">검색</button>
+                </fieldset>
+            </form>
+        </section>
+        <div class="board">
+            <section class="notice tab-act">
+                <h2 class="tab notice-heading">공지사항</h2>
+                <ul class="board-list notice-list">
+                    <li>
+                        <a href="#">HTML의 모든 것을 알려주마 샘플 활용법</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">W3C 사이트 리뉴얼 및 공지사항</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">KWCAG 2.1 소식</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">서버 점검으로 인한 사이트 이용안내 입니다.</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">여러분들이 생각하는 웹 접근성에 대해 이야기를 나누어 봅시다.</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                </ul>
+                <a href="#" class="tab-more notice-more">더보기</a>
+            </section>
+            <section class="data">
+                <h2 class="tab data-heading">자료실</h2>
+                <ul class="board-list data-list">
+                    <li>
+                        <a href="#">디자인 사이트 링크 모음</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">웹 접근성 관련 자료 모음</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">예제 샘플 응용해보기</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">웹 접근성 향상을 위한 국가 표준 기술 가이드라인</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                    <li>
+                        <a href="#">로앨티 프리 이미지 자료</a>
+                        <time datetime="2018-09-17T18:58:00">2018-09-17</time>
+                    </li>
+                </ul>
+                <a href="#" class="tab-more data-more">더보기</a>
+            </section>
+        </div>
+    </div>
+
+</body>
+
+</html>

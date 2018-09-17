@@ -1,0 +1,240 @@
+/* Normalize */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css");
+/* fonts */
+@import url("icon-font.css");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700");
+/* RESET CSS */
+*, 
+*::before, 
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
+
+.clearfix::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.readable-hidden, .skip-nav {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    z-index: 10;
+}
+
+.skip-nav:focus {
+    width:200px;
+    height: auto;
+    padding: 1em;
+    margin: 0;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    clip: rect(auto, auto, auto, auto);
+}
+
+
+
+html {
+    font-size: 10px;
+    color: #181818;
+}
+
+body {
+    background: rgb(211, 211, 211);
+    font-size: 14px;
+    font: 400 14px/1.15em "Noto Sans KR", san-serif;
+}
+
+.header, .visual, .main, .slogan, .footer {
+    width: 940px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 0;
+}
+
+/*============
+    HEADER
+==============*/
+.header {
+    position: relative;
+    padding: 0 30px;
+    border-radius: 0 0 15px 15px;
+    
+    background: #fff;
+}
+
+/* 로고 */
+.logo {
+    position: absolute;
+    top: 47px;
+    left: 65px;
+
+    z-index: 10;
+}
+
+/* 멤버 */
+.member {
+    text-align: right;
+    
+    font-size: 0;
+}
+
+.member li {
+    display: inline-block;
+    font-size: 1.4rem;
+    padding: 4px 0;
+}
+
+.member li::before {
+    content: ":";
+}
+
+.member li:first-child::before {
+    content: "";
+}
+
+.member a {
+    padding: 8px 10px;
+}
+
+.member li:last-child a {
+    padding-right: 0;
+    text-transform: uppercase;
+}
+
+/* 네비게이션 */
+.navigation {
+    padding-bottom: 40px;
+}
+
+.menu {
+    padding-left: 225px;
+    height: 47px;
+
+    background: orange;
+    background: linear-gradient(#f7b733 0%, #F37335 30%, #F37335 60%, #f7b733 100%);
+    
+    border-top: 2px solid #000;
+    border-radius: 0 0 5px 5px;
+}
+
+.menu-item {
+    float: left;
+    position: relative;
+    border-left: 2px solid rgba(255,255,255,0.5);
+}
+
+.main-item:focus {
+    outline: 0;
+}
+
+.menu-act .main-menu {
+    color: #ff0;
+}
+
+.menu-act .main-menu::after {
+    border-top: 2px solid #000;
+    /* box-sizing: content-box; */
+    content: "";
+    display: block;
+}
+
+.main-menu {
+    font-size: 1.6rem;
+    color: #fff;
+    font-weight: 700;
+    text-shadow:1px 0 0 #000,
+                -1px 0 0 #000,
+                0 1px 0 #000,
+                0 -1px 0 #000;
+    line-height: 45px;
+    display: block;
+    padding: 0 20.5px;
+}
+
+.sub-menu {
+    position: absolute;
+    top: 47px;
+    display: none;
+    font-size: 0;
+    white-space: nowrap;
+}
+
+.menu-act .sub-menu {
+    display: block;
+}
+
+.menu-item:nth-child(n+4) .sub-menu{
+    right: 0;
+}
+
+.sub-menu li {
+    display: inline-block;
+    font-size: 1.4rem;
+}
+
+.sub-menu a {
+    padding: 10px 0;
+    margin-right: 10px;
+    font-weight: 400;
+}
+
+.menu-item:nth-child(n+4) .sub-menu a{
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+
+/*============
+    VISUAL
+==============*/
+.visual {
+    background: cadetblue;
+    height: 20vh;
+}
+
+/*==========
+    MAIN
+============*/
+.main {
+    background: slategray;
+    height: 50vh;
+}
+
+/*============
+    SLOGAN
+==============*/
+.slogan {
+    background: seagreen;
+    height: 10vh;
+
+}
+
+
+/*============
+    FOOTER
+==============*/
+.footer {
+    background: indigo;
+    height: 10vh;
+}
