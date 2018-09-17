@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+}
+
+fieldset div {
+    width: 400px;
+    margin: 10px 0;
+    border: 1px solid #bbb;
+    color: #333;
+    background-color: #eee;
+    padding: 15px 10px;
+    float: left;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+}
+
+input {
+    
+}
+
+.flex {
+    /* display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap; */
+}
+
+.flex-box {
+    width: 250px;
+    height: 250px;
+    background: #000;
+
+}
