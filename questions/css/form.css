@@ -16,6 +16,7 @@ fieldset {
 
 fieldset div {
     width: 400px;
+    height: 50px;
     margin: 10px 0;
     border: 1px solid #bbb;
     color: #333;
