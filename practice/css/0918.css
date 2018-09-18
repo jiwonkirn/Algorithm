@@ -1,0 +1,291 @@
+@charset "utf-8";
+@import url("spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
+@import url("../css/icon-font.css");
+
+
+*,
+*::before,
+*::after,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    color: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font-style: none;
+    text-decoration: none;
+
+    font-size: 1em;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font: 400 14px /1.15em 'Spoqa Han Sans', sans-serif;
+    color: #181818
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.clearfix::after {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.readable-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    z-index: 10;
+}
+
+body {
+    background: linear-gradient(to bottom, #ccc, #eee 45%, #fff 70%, #fff 100%) no-repeat;
+}
+
+
+/* 메인 */
+.main {
+    width: 940px;
+    margin: 245px auto 0;
+    padding: 30px;
+    border-radius: 15px;
+
+    background: #fff;;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.group {background: #eee;}
+
+.group1 {width: 250px; min-height: 300px;}
+.group2 {width: 380px; min-height: 300px;}
+.group3 {width: 190px; min-height: 300px;}
+
+
+/*=========
+    그룹1
+==========*/
+
+/* 로그인 박스 */
+.login {
+    border-radius: 5px;
+    padding: 15px 10px 10px 10px;
+    box-shadow: 5px 5px 0 0 #aaa;
+
+    background: radial-gradient(circle at right top, #e8852e, #ed552f)
+}
+
+.login-heading {
+    color: #ff0;
+    font-weight: 700;
+    text-indent: 10px;
+
+    font-size: 1.6rem;
+}
+
+.login-form {
+    background: #fff;
+ 
+    margin-top: 10px;
+    padding: 10px 10px 0 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.login-form fieldset {
+    position: relative;
+
+    padding-bottom: 10px;
+    border-bottom: 1px solid #aaa;
+}
+
+.login-box {
+    font-size: 0;
+    display: inline-block;
+}
+
+.login-box label, .login-box input {
+    font-size: 1.4rem;
+}
+
+.login-box label {
+    display: inline-block;
+    width: 4em;
+
+    white-space: nowrap;
+}
+
+.login-box input {
+    width: 100px;
+    height: 22px;
+
+    border: 1px solid #aaa;
+    padding: 1px 1px 1px 5px;
+}
+
+.login-pw-wrap {
+    margin-top: 5px;
+}
+
+.login-btn {
+    background: #ed552f;
+    
+    padding: 15px 7px;
+    border: 1px solid #e8852e;
+    border-radius: 3px;
+
+    font-size: 1.3rem;
+    color: #fff;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.login-list {
+    background: #fff;
+
+    padding: 2px 10px;
+    border-radius: 0 0 5px 5px;
+    font-size: 1.3rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-list a {
+    padding: 10px 0;
+}
+
+.login-list a::before {
+    content: '\e801';
+    font-family: 'icon-font';
+    color: #ed552f;
+    margin: 0 3px;
+}
+
+/* 유효성 검사 배너 */
+.validation {
+    margin-top: 30px;
+}
+
+.validation li {
+    margin-top: 10px;
+    
+    border: 1px solid #aaa;
+    border-radius: 15px;
+
+    height: 32px;
+    background: linear-gradient(#ccc, #eee);
+}
+
+.validation a {
+    line-height: 32px;
+    
+    display: block;
+    padding-left: 35px;
+
+    background: url("../img/images/validation_icon.png") no-repeat 15px 40%;
+}
+
+
+/* 웹 표준 */
+.term {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+
+    background: linear-gradient(#ccc, #eee), no-repeat;
+}
+
+.term-heading {
+    font-size: 1.6rem;
+}
+
+.term-list {
+    margin-top: 15px;
+}
+
+.term-list-heading, .term-list-text {
+    width: 145px;
+    float: right;
+}
+
+.term-list-heading {
+    color: steelblue;
+}
+
+.term-list-text{
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+.term-list-thumbnail {
+    float: left;
+}
+
+
+/*=========
+    그룹3
+==========*/
+
+/* 이벤트 및 관련 사이트 */
+.event-related {
+    background: linear-gradient(#ccc, #eee);
+
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.event, .related {
+    margin: 10px 0;
+}
+
+.evnet-heading, .related-heading {
+    font-size: 1.5rem;
+    margin: 15px 0;
+}
+
+.evnet-heading span, .related-heading span {
+    color: #ed552f;
+}
+
+
+.event-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

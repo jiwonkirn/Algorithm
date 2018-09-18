@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700");
+
+body, h1, h2 * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 14px;
+}
+
+html {
+    font-size: 10px;
+}
+
+a {
+    text-decoration: none;
+    list-style: none;
+}
+
+header {
+    height: 100px;
+}
+
+legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: -1px;
+    clip: rect(0,0,0,0);
+    z-index: 10;
+}
+
+.container {
+    background-color: #ccc;
+}
+
+.main {
+    width: 960px;
+    min-height: 600px; 
+    margin: 0 auto;   
+    background-color: #eee;
+}
+
+.group1 {
+    width: 250px;
+    background: #fff;
+}
+
+.login {
+    background-color: #ed552f;
+    border-radius: 5px 5px 0 0 ;
+    padding: 10px;
+
+}
+
+.login-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff0;
+    text-indent: 10px;
+}
+
+.login-form fieldset {
+    border: 0;
+    background: #fff;
+    padding: 10px;
+    margin-top :10px;
+}
+
+/* 이슈 */
+
+.user-id, .user-pw {
+    float: left;
+}
+
+.btn-login {
+    float: right;
+}
+
+.login-form label {
+    display: inline-block;
+    width: 4em;
+}
+
+.login-form input {
+    width: 100px;
+    height: 22px;
+    padding: 1px 1px 1px 5px;
+    margin: 0;
+}
+
+.btn-login {
+    width: 50px;
+    height: 50px;
+    background-color: tomato;
+    font-size: 1.2rem;
+    color: #fff;
+
+}
+

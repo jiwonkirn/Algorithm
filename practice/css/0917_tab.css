@@ -1,0 +1,186 @@
+@charset "utf-8";
+@import url("icon-font.css");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700");
+
+
+*, 
+*::before,
+*::after, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.15em;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    color: #181818;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+html {
+    font-size: 10px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.readable-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    z-index: 10;
+}
+
+
+/* 컨테이너 */
+body {
+    background: linear-gradient(to bottom, #bbb, #eee) no-repeat;
+}
+
+.container {
+    width: 420px;
+    min-height: 600px;
+
+    padding: 20px;
+    margin: 100px auto;
+
+    background: #fff;
+}
+
+/* 검색창 */
+.search {
+   padding: 10px 25px; 
+   background: linear-gradient(to bottom, #bbb, #eee);
+
+   border: 1px solid #666;
+   border-bottom: 0;
+   border-radius: 15px 15px 0 0;
+}
+
+.search-form fieldset * {
+    vertical-align: middle;;
+}
+
+.search-form input {
+    width: 200px;
+    height: 22px;
+
+    padding: 1px 1px 1px 5px;
+    margin: 0 5px;
+
+    font-size: 1.4rem;
+}
+
+.search-btn {
+    width: 40px;
+    height: 22px;
+
+    background: #333;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+/* 보드 */
+.board {
+    margin-top: 20px;
+    position: relative;
+}
+
+.tab {
+    display: inline-block;
+    
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    border-radius: 3px 3px 0 0;
+
+    background: linear-gradient(to bottom, #bbb, #eee);
+ 
+    color: #333;
+    font-size: 1.3rem;
+
+    position: absolute;
+
+    cursor: pointer;
+}
+
+.tab-act .tab {
+    border: 1px solid #ed552f;
+    border-bottom: 0;
+    
+    background: #fff;
+    color: #ed552f;    
+}
+
+.data-heading {
+    top: 0;
+    left: 69px;
+}
+
+.board-list {
+    padding-top: 45px;
+    /* background: pink; */
+
+    display: none;
+}
+
+.tab-act .board-list {
+    display: block;
+}
+
+.board-list li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.board-list a {
+    /* background: #ff0; */
+    width: 300px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.board-list time {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.tab-more {
+    position: absolute;
+    top: 5px;
+    right: 0;
+
+    font-size: 1.3rem;
+}
+
+.tab-more::before {
+    content: "\e800";
+    font-family: "icon-font";
+    margin-right: 2px;
+
+    font-size: 1.3rem;
+    color: darkgreen;
+}
+
