@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transition | 전이효과</title>
+
+    <style>
+        
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background: #ffff00;
+            border: 5px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 속성이름 */
+            transition-property: transform, background, border-radius, width, height, border-color;
+            transition-duration: 0.5s;
+            transition-delay: 1s, 2s, 3s, 4s, 5s;
+            transition-timing-function: ease-in-out;
+            
+        }
+
+        .box1-act {
+            height: 200px;
+            width: 200px;
+            background: pink;
+            border-radius: 50%;
+            border-color: indigo;
+            transform: rotate(180deg);
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="btn">
+        <button type="button" class="box-ani">애니메이션</button>
+    </div>
+    <div class="box1">
+        박스1
+    </div>
+
+    <script defer src="../js/jquery.min.js"></script>
+    <script defer src="../js/transition.js"></script>
+
+</body>
+</html>

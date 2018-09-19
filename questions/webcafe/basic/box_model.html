@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>박스모델</title>
+    <style>
+        .content-box{
+            background: yellow;
+            width: 500px;
+            height: 300px;
+            border: 10px solid indigo;
+            padding: 20px 50px 30px;
+            margin: 50px;
+            box-sizing: content-box;
+            /* 
+            content-box 
+            너비값이 패딩과 보더를 합친 값으로 출력한다.
+            */
+        }
+
+        .border-box{
+            background: deeppink;
+            width: 500px;
+            height: 300px;
+            border: 10px solid indigo;
+            padding: 20px 50px 30px;
+            margin: 50px;
+            box-sizing: border-box;
+            /* 
+            border-box
+            정해진 너비값 안으로 패딩과 보더가 생성된다.
+            너비는 width값으로 출력된다.
+            */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-box">
+        콘텐츠 박스
+    </div>
+    <div class="border-box">
+        보더 박스
+    </div>
+</body>
+</html>
