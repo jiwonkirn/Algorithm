@@ -1,7 +1,7 @@
 
 ---
 
-#  0918 월요일 TIL(Today I Learned)
+#  0919 수요일 TIL(Today I Learned)
 
 ---
 
