@@ -1,0 +1,81 @@
+
+[class*="octicon"]::before,[class*="octicon"]::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
+[class*="octicon"]::before {padding-right: 5px;}
+[class*="octicon"]::after {padding-left: 5px;}
+
+.octicon-mark-github::before {
+    content: url("../img/mark-github.svg");
+}
+
+.octicon-code::before {
+    content: url("../img/svg/code.svg");
+}
+
+.octicon-issue-opened::before {
+    content: url("../img/svg/issue-opened.svg");
+}
+
+.octicon-git-pull-request::before {
+    content: url("../img/svg/git-pull-request.svg");
+}
+
+.octicon-project::before {
+    content: url("../img/svg/project.svg");
+}
+
+.octicon-book::before {
+    content: url("../img/svg/book.svg");
+}
+
+.octicon-graph::before {
+    content: url("../img/svg/graph.svg");
+}
+
+.octicon-star::before {
+    content: url("../img/svg/star.svg");
+}
+
+.octicon-eye::before {
+    content: url("../img/svg/eye.svg");
+}
+.octicon-forked::before {
+    content: url("../img/svg/repo-forked.svg");
+}
+.octicon-history::before {
+    content: url("../img/svg/history.svg");
+}
+.octicon-git-branch::before {
+    content: url("../img/svg/git-branch.svg");
+}
+.octicon-tag::before {
+    content: url("../img/svg/tag.svg");
+}
+.octicon-people::before {
+    content: url("../img/svg/organization.svg");
+}
+.octicon-bell::before {
+    content: url("../img/svg/bell.svg");
+}
+.octicon-plus::before {
+    content: url("../img/svg/plus.svg");
+}
+
+.octicon-repo::before {
+    content: url("../img/svg/repo.svg");
+}
+
+.octicon-file::before {
+    content: url("../img/svg/file-zip.svg");
+    opacity: 0.5;
+}
+
+.octicon-triangle-down::after{
+    content: url("../img/svg/triangle-down.svg");
+    margin-right: 2px;
+}
+
