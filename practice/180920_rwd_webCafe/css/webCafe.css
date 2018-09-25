@@ -1,0 +1,698 @@
+@charset "utf-8";
+
+/* Font: Spoqa Han Snas */
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700');
+
+/* icon */
+@import url("webCafe-icon.css");
+
+/* CSS Normalize */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css");
+
+
+*,
+*::before,
+*::after,
+h1,h2,h3,h4,h5,h6,
+fieldset, legend, form, input, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    box-sizing: border-box;
+
+    font-size: inherit;
+    vertical-align: baseline;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    color: inherit;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+section, article, main, footer, figcaption, figure,
+header, nav, aside, time {
+    display: block;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    font-size: 14px;
+    font-family: 'Noto Sans KR', 'Spoqa Han Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #181818;
+}
+
+.clearfix {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.readable-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    z-index: 10;
+}
+
+.header, .main-menu, .main, .slogan {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/* 로고 아이콘 */
+.main h2 {
+    background-image: url("images/sprite_main.png");
+    background-repeat: no-repeat;
+    
+    font-weight: 500;
+    font-size: 1.5em;
+    
+    min-height: 60px;
+    padding: 5px 0;
+    padding-left: 65px;
+    margin: 20px 0;
+}
+
+.main h2 span {
+    display: block;
+}
+
+.news-heading {background-position: 0 40%;}
+.board-heading {background-position: 0 20%;}
+.sns-heading {background-position: 0 80%;}
+.favorite-heading {background-position: 0 60%;}
+
+.recommended-book-heading span {color: #abd375;}
+.news-heading span {color: #e8ca58;}
+.board-heading span {color: #c7b39a;}
+.sns-heading span {color: #6aaee6;}
+.favorite-heading span {color: #eea60a;}
+
+[class*=-explain] {
+    line-height: 1.5em;
+    margin: 14px 0;
+}
+
+/* 추천서적 */
+.recommended-book-img {
+    margin: 14px 40px;
+    text-align: center;
+}
+
+.recommended-book-img img {max-width: 100%;}
+
+.recommended-book-info-author, .recommnaed-book-info-scored {
+    text-align: center;
+}
+
+.recommended-book-info-author dt, .recommended-book-info-author dd {
+    display: inline-block;
+}
+
+.recommnaed-book-info-scored dd{
+    color: #abd375;
+    font-size: 2em;
+}
+
+
+/* 새소식 */
+.news-video {
+    width: 100%;
+}
+
+.news time {
+    display: block;
+    text-align: right;
+}
+
+.news time::before {
+    margin-right: 5px;
+}
+
+/* 게시판 */
+.board {
+    position: relative;
+}
+
+.board-list li {
+    margin: 20px 0;
+}
+
+.board-list a {
+    width: 210px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.board-list time {
+    display: inline-block;
+}
+
+.board-more {
+    position: absolute;
+    top: 25px;
+    right: 0;
+}
+
+.board-more::before {
+    color: #abd375;
+}
+
+/* 트위터(SNS) */
+.sns-user {
+    font-size: 0;
+}
+
+.sns-user dd{
+    font-size: 1.4rem;
+    display: inline-block;
+}
+
+.sns-user-name {
+    color: #6aaee6;
+}
+
+.sns-user-id a {
+    font-weight: 700;
+}
+
+.sns-explain {
+    display: inline-block;
+    width: 265px;
+}
+
+.sns-user-img {
+    float: right;
+    margin-top: -15px;
+}
+
+.sns-user-img img {
+    border-radius: 50%;
+    padding: 7px;
+    border: 1px solid #333;
+}
+
+.sns time {
+    text-align: right;
+    margin-top: 40px;
+}
+
+/* 인기사이트 */
+.favorite-site-list {
+    padding: 5px 0;
+}
+
+.favorite-site-list li {
+    margin: 10px 0;
+    counter-increment: ordered 1;
+}
+
+.favorite-site-list li::before {
+    content: counter(ordered, decimal);
+
+    display: inline-block;
+    padding: 3px 7px;
+    margin-right: 10px;
+    border-radius: 50%;
+    
+    color: #fff;
+    background: #eea60a;
+}
+
+/* 푸터 */
+.footer {
+    color: #fff;
+    background: #988575;
+}
+
+.footer address {
+    margin-bottom: 15px;
+}
+
+.footer small {
+    font-size: 1.4rem;
+}
+
+
+@media screen and (min-width: 1000px) {
+    /* ====================
+        헤더
+    ==================== */
+    .header {
+        height: 100px;
+
+        display: grid;
+        grid-template-columns: repeat(12, 65px);
+        grid-column-gap: 20px;
+        grid-template-rows: 50px 50px;
+    }
+
+    /* 로고 */
+    .logo {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 2;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 멤버 */
+    .member {
+        grid-column: 10 / span 3;
+        grid-row: 1 / span 1;
+        font-size: 0;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .member li {
+        display: inline-block;
+        font-size: 1.4rem;
+    }
+
+    .member li:nth-child(n+2)::before {
+        content: "|";
+    }
+
+    .member a {
+        margin: 0 14px;
+        padding: 20px 0;
+        white-space: nowrap;
+    }
+
+    /* 검색창 */
+    .search-form {
+        grid-column: 7 / span 6; 
+        grid-row: 2 / span 1;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .search-form input {
+        width: 400px;
+        height: 35px;
+
+        padding: 5px 5px 5px 10px;
+        border: 1px solid #666;
+        border-radius: 5px;
+    }
+
+    .search-btn {
+        width: 50px;
+        height: 35px;
+
+        background: #988575;
+
+        color: #fff;
+
+        margin-left: 8px;
+        border: 1px solid #666;
+        border-radius: 5px;
+    }
+
+
+    /* ====================
+        네비게이션
+    ==================== */
+    .navigation {
+        border: 2px solid #666;
+        padding-top: 32px;
+
+        background: #988575;
+    }
+
+    .main-menu-btn {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        z-index: 10;
+    }
+
+    .main-menu {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .main-menu-list-itm {
+        display: inline-block;
+    }
+
+    .main-menu-item {
+        margin-bottom: 10px;
+
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-shadow: 1px 0 0 #333,
+                    0 1px 0 #333,
+                    -1px 0 0 #333,
+                    0 -1px 0 #333;
+
+        cursor: pointer;
+    }
+
+    .sub-menu li {
+        margin: 8px 0 8px 16px;
+    }
+
+    .sub-menu a {
+        padding: 8px 0;
+        font-size: 1.6rem;
+        color: #fff;
+    }
+
+    .sub-menu a:hover {
+        color: #ff0;
+    }
+
+    /* ====================
+        메인 (레이아웃)
+    ==================== */
+    .main {
+        display: grid;
+        grid-template-columns: repeat(12, 65px);
+        grid-template-rows: auto auto;
+        grid-column-gap: 20px;
+    }
+
+    /* 종단 레이아웃 */
+    .recommended-book, .news {grid-row: 1 / span 1;}
+
+    .board, .sns, .favorite {grid-row: 2 / span 1;}
+
+    /* 횡단 레이아웃 */
+    .recommended-book {grid-column: 1 / span 4;}
+
+    .news {grid-column: 5 / span 8;}
+
+    .board {grid-column: 1 / span 4;}
+
+    .sns {grid-column: 5 / span 5;}
+
+    .favorite {grid-column: 10 / span 3;}
+
+
+    /* 슬로건 */
+    .slogan {
+        position: relative;
+    }
+
+    .slogan-heading {
+        position: absolute;
+        top: 10px;
+        width: 100px;
+        line-height: 100px;
+        text-align: center;
+    }
+
+    .slogan-heading::after {
+        width: 100px;
+        height: 100px;
+        content: "";
+        background: url("images/coffee.png") no-repeat;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .slogan-explain {
+        margin: 16px 150px 16px 160px;
+    }
+
+    .slogan-explain q {
+        font-size: 1.6rem;
+        line-height: 1.2;
+    }
+
+    .slogan-explain q::before {
+        font-size: 2em;
+        position: relative;
+        top: 5px;
+    }
+
+    .slogan-explain q::after {
+        font-size: 0;
+    }
+
+    /* 푸터 */
+    .footer {
+        text-align: center;
+        padding: 30px;
+    }
+
+    .footer address {
+        margin-bottom: 15px;
+    }
+
+    .footer small {
+        font-size: 1.4rem;
+    }
+
+}
+
+
+/* ====================
+    태블릿
+==================== */
+@media screen and (max-width: 999px) {
+
+    /* ====================
+        헤더
+    ==================== */
+    body {
+        font-size: 16px;
+    }
+
+    .header {
+        width: 100%;
+        background: #38302e;
+
+        padding-bottom: 30px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .member {
+        order: -1;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 0;
+        background: #988575;
+    }
+
+    .member a {
+        padding: 5px 15px;
+        font-size: 1.6rem;
+        color: #fff;
+    }
+
+    .logo {
+        padding: 15px;
+    }
+
+    .search-form {
+        display: block;
+        padding: 0 30px 0 30px;
+    }
+
+    .search-form input {
+        width: calc(100% - 40px);
+        border-radius: 3px;
+        height: 30px;
+        padding-left: 15px;
+    }
+
+    .search-btn {
+        margin-left: 5px;
+        text-indent: 30px;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 30px;
+        height: 30px;
+        background: url("images/btn_search.png") no-repeat 0 0 / 100% 100%;
+    }
+
+
+    /* ====================
+        메인메뉴
+    ==================== */
+    .navigation {
+    }
+
+    .main-menu-btn {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 75px;
+        right: 35px;
+        background-color: transparent;
+    }
+
+    .top-bar, .middle-bar, .bottom-bar {
+        width: 100%;
+        height: 20%;
+        background: #fff;
+        position: absolute;
+        border-radius: 5px;
+
+        transition: all 0.5s ease-in-out;
+    }
+
+    .top-bar {top: 0;}
+
+    .middle-bar {top: 40%;}
+
+    .bottom-bar {top: 80%;}
+
+    .main-menu {
+        background-color: rgba(0,0,0,0.8);
+
+        padding: 50px;
+
+        position: fixed;
+        top: 0;
+        left: -70%;
+
+        height: 100%;
+        width: 70%;
+
+        color: #fff;
+
+        transition: all .5s ease-in-out;
+    }
+
+    .menu-act .main-menu {
+        /* display: block; */
+        left: 0;
+    }
+
+    .menu-act .top-bar {
+        top: 50%;
+        transform: translateY(-50%);
+        transform: rotate(45deg);
+    }
+
+    .menu-act .middle-bar {
+        opacity: 0;
+    }
+
+    .menu-act .bottom-bar {
+        top: 50%;
+        transform: translateY(-50%);
+        transform: rotate(-45deg);
+    }
+
+    .main-menu-item {
+        display: block;
+        line-height: 2.5em;
+        cursor: pointer;
+    }
+
+    .main-menu-item::before {
+        content: '\e802';
+        font-family: 'icon-font';
+        margin-right: 10px;
+        font-size: 1.4rem;
+    }
+
+    .sub-menu li {
+        display: none;
+        padding-left: 20px;
+    }
+
+    .main-menu-act li {
+        display: block;
+    }
+
+    .main-menu-act .main-menu-item::before {
+        content: '\e803';
+        font-family: 'icon-font';
+        margin-right: 10px;
+        font-size: 1.4rem;
+    }
+
+    .sub-menu a::before {
+        content: "•";
+
+        position: relative;
+        top: -2px;
+        margin-right: 10px;
+    }
+
+    .sub-menu a {
+        display: block;
+        line-height: 2.5em;
+    }
+
+    /* sns */
+    .sns-explain {
+        display: inline-block;
+        width: calc(100% - 200px);
+    }
+
+    /* ====================
+        메인
+    ==================== */
+    .main, .slogan, .footer {
+        padding: 15px;
+        width: 100%;
+    }
+
+    /* 게시판 */
+    .board-list a {
+        width: 80%;
+    }
+
+    .board-list time {
+        float: right;
+    }
+
+    /* ====================
+        슬로건
+    ==================== */
+    .slogan-heading {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        z-index: 10;
+    }
+
+    /* ====================
+        푸터
+    ==================== */
+    .footer span {
+        display: block;
+    }
+
+}
