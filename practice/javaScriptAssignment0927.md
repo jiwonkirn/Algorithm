@@ -10,12 +10,12 @@
 
 - [5번문제](https://repl.it/@jiwonkirn/Question05)
 
-- 6번문제
+- [6번문제](https://repl.it/@jiwonkirn/Question06)
 
 - 7번문제
 
-- 8번문제
+- [8번문제](https://repl.it/@jiwonkirn/Question08)
 
 - 9번문제
 
-- 10번문제
+- [10번문제](https://repl.it/@jiwonkirn/Question10)
