@@ -133,9 +133,34 @@ for (a = 1; a <= 20; a++) {
 
 100 이하의 자연수 중 3과 5의 공배수를 모두 출력하는 프로그램을 작성하세요.
 
+```js
+for (let i = 1; i <=100; i++) {
+  if ((i % 3 === 0) && (i % 5 ===0)) {
+    console.log(`${i}: 공배수`)
+  } else {
+    console.log(`${i}: 아님`)
+  }
+}
+```
+
 ### 문제 6
 
 자연수를 입력받아, 그 수의 모든 약수를 출력하는 함수를 작성하세요.
+
+```js
+const input = prompt("자연수를 입력하세요");
+// const naturalNumber = 12;
+
+let naturalNumber =  Number.parseInt(input);
+
+for (i=1; i <= naturalNumber; i++) {
+  if ((naturalNumber % i === 0) && (naturalNumber > 0) && (Number.isInteger(naturalNumber) === true)) {
+    console.log(`${i}는 약수`);
+  } else {
+    console.log(`${i}는 약수가 아님`);
+  }
+}
+```
 
 ### 문제 7
 
@@ -144,6 +169,20 @@ for (a = 1; a <= 20; a++) {
 ### 문제 8
 
 1부터 100까지의 수를 차례대로 출력하되, 자릿수에 3, 6, 9중 하나라도 포함되어 있으면 '짝!'을 대신 출력하는 프로그램을 작성하세요.
+
+```js
+for (let i=1; i <=100; i++) {
+  const str = i.toString()
+  if (str.includes('3') || 
+  str.includes('6') || 
+  str.includes('9')
+  ) {
+    console.log('짝!')
+  } else {
+    console.log(i)
+  }
+}
+```
 
 ### 문제 9
 
