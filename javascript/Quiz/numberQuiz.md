@@ -349,16 +349,13 @@ console.log(Euclid(12, 9)) // 3
 ```js
 function fibonacci(num) {
 	var value 
+  // 아래 식에 의해 num이 1, 2 일때는 값이 1
 	if( num <= 1 ) {
 		return num;
 	}
 	else if( num > 1 ) {
+    // 함수 안에서 또 함수가 실행된다.
 		value = fibonacci(num-1) + fibonacci(num-2);
-    // value 
-    // = fi(4) + fi(3) 
-    // = fi(3) + fi(2) + fi(2) + fi(1)
-    // = fi(2) + fi(1) + fi(1) + fi(1) + fi(1)
-    // = fi(1) + fi(1) + fi(1) + fi(1) + fi(1) = 5
 	}
 	return value;
 }
