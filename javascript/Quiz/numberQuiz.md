@@ -166,6 +166,32 @@ for (i=1; i <= naturalNumber; i++) {
 
 2 이상의 자연수를 입력받아, 그 수가 소수인지 아닌지를 판별하는 함수를 작성하세요.
 
+```js
+// 입력 받은 수의 타입은 string이기 때문에 number 타입으로 변환한다.
+let num = parseInt(prompt(`소수를 판별합니다. 2이상의 자연수를 입력해 주세요`))
+
+function isPrimeNumber(num) {
+  // 2 이상의 자연수를 받았는지에 대해 확인
+  if ((num < 2) || (Number.isInteger(num) === false)) {
+    console.log("이 수는 2 이상의 자연수가 아닙니다.")
+  } else {
+    for (i=2; i<num; i++) {
+    // 나머지가 0이 있으면 나눠지는 합성수
+    if (num % i === 0) {
+      // 2부터 (num - 1) 까지의 수 중에 num을 나눴을 때 
+      //나머지가 0인 경우가 나왔으므로 합성수
+      return false
+    }
+  }
+  // 2부터 (num - 1) 까지의 수 중에 num을 나눴을 때 
+  // 나머지가 0일 때가 없으므로 num은 소수
+  return true
+  }
+}
+
+isPrimeNumber(num);
+```
+
 ### 문제 8
 
 1부터 100까지의 수를 차례대로 출력하되, 자릿수에 3, 6, 9중 하나라도 포함되어 있으면 '짝!'을 대신 출력하는 프로그램을 작성하세요.
@@ -209,6 +235,27 @@ for (let i=1; i <=100; i++) {
 * * * * *
 ```
 
+```js
+//입력 받은 수는 string 타입이므로 number타입으로 변환한다. 
+let num = parseInt(prompt("양수를 입력해 주세요"))
+
+function makeStarPattern(num) {
+  const star = '* ';
+  // num이 0보다 큰 자연수가 맞으면
+  if (num > 0 && Number.isInteger(num) === true){
+    // 입력받은 수 에 따른 패턴을 출력한다.
+    for (i=1; i<=num; i++) {
+    console.log(star.repeat(i));
+    }
+  } else {
+    // 음수이거나 소수일 경우
+    console.log('양수가 아닙니다.');
+  }
+}
+
+makeStarPattern(num);
+```
+
 ### 문제 10
 
 양의 정수를 입력받아, 다음과 같은 패턴의 출력을 하는 함수를 작성하세요.
@@ -238,6 +285,32 @@ for (let i=1; i <=100; i++) {
   * * *
    * *
     *
+```
+
+```js
+let num = parseInt(prompt("양의 정수를 입력해주세요"))
+
+function makeStarPattern(num) {
+
+  if (num > 0 && Number.isInteger(num) === true){
+    const star = '* '
+    const blank = ' '
+    for (i=1; i<=num; i++) {
+      // 앞에 공백문자를 규칙에 맞게 추가
+      console.log(blank.repeat(num-i) + star.repeat(i));
+      }
+      // 별이 줄어드는 제어구문
+    for (i=num-1; i>=1; i--) {
+      console.log(blank.repeat(num-i) + star.repeat(i));
+    }
+  } else {
+    console.log('양의 정수를 입력해주세요')
+  }
+  
+}
+
+makeStarPattern(num)
+
 ```
 
 ### 문제 11
