@@ -317,6 +317,27 @@ makeStarPattern(num)
 
 두 수를 입력받아서, 두 수의 최대공약수를 반환하는 함수를 작성하세요. ([유클리드 호제법](https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95)을 참고하세요.)
 
+```js
+function Euclid(largerNum, smallerNum) {
+
+  let remainder = largerNum % smallerNum
+  
+  if (smallerNum === 0) {
+    return largerNum
+  } else if (largerNum % smallerNum === 0) {
+    return smallerNum
+  } else {
+    return Euclid(smallerNum, remainder)
+  }
+}
+
+console.log(Euclid(12, 0)) // 12
+console.log(Euclid(8, 4)) // 4 
+console.log(Euclid(12, 9)) // 3
+```
+
+
+
 ### 문제 12
 
 세 수를 입력받아 큰 것부터 차례대로 출력하는 함수를 작성하세요.
@@ -324,3 +345,35 @@ makeStarPattern(num)
 ### 문제 13
 
 자연수 `n`을 입력받아, `n`번째 피보나치 수를 반환하는 함수를 작성하세요.
+
+```js
+function fibonacci(num) {
+	var value 
+	if( num <= 1 ) {
+		return num;
+	}
+	else if( num > 1 ) {
+		value = fibonacci(num-1) + fibonacci(num-2);
+    // value 
+    // = fi(4) + fi(3) 
+    // = fi(3) + fi(2) + fi(2) + fi(1)
+    // = fi(2) + fi(1) + fi(1) + fi(1) + fi(1)
+    // = fi(1) + fi(1) + fi(1) + fi(1) + fi(1) = 5
+	}
+	return value;
+}
+
+console.log(fibonacci(1)); //1
+console.log(fibonacci(2)); //1
+console.log(fibonacci(3)); //2
+console.log(fibonacci(4)); //3
+console.log(fibonacci(5)); //5
+// fibonacci(5)는 아래와 같이 풀린다.
+// value 
+// = fi(4) + fi(3) 
+// = fi(3) + fi(2) + fi(2) + fi(1)
+// = fi(2) + fi(1) + fi(1) + fi(1) + fi(1)
+// = fi(1) + fi(1) + fi(1) + fi(1) + fi(1) = 5
+console.log(fibonacci(6)); //8
+console.log(fibonacci(7)); //13
+```
