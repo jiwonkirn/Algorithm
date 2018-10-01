@@ -288,6 +288,24 @@ makeStarPattern(num);
 ```
 
 ```js
+function printLine(height, i) {
+  const n = i + 1;
+  const line = ' '.repeat(height - n) + '* '.repeat(n)
+  console.log(line)
+}
+
+function print(height) {
+  for (let i = 0; i < height; i++) {
+    printLine(height, i)
+  }
+  for (let i = height - 2; i >= 0; i--) {
+    printLine(height, i)
+  }
+}
+```
+
+
+```js
 let num = parseInt(prompt("양의 정수를 입력해주세요"))
 
 function makeStarPattern(num) {

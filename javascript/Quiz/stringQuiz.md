@@ -90,6 +90,39 @@ countChar('tomato'); -> {t: 2, o: 2, m: 1, a: 1}
 
 문자열을 입력받아 그 문자열이 회문(palindrome)인지 판별하는 함수를 작성하세요. (회문이란, '토마토', 'never odd or even'과 같이 뒤에서부터 읽어도 똑같이 읽히는 문자열을 말합니다.)
 
+```js
+function isPalindrome(input) {
+  arr = input.split('');
+  num = arr.length
+  for (i=0; i<num; i++){
+    if(arr[i] === arr[num-i-1]) {
+      continue;
+    } else {
+      return false;
+    }
+  }
+    return true;
+}
+
+isPalindrome('토마토마토') // true;
+isPalindrome('토마토바토') // false;
+```
+
+```js
+function isPalindrome(input) {
+  num = input.length
+  for (i=0; i<=num/2-1; i++){
+    if(input[i] !== input[num-i-1]) {
+      return false;
+    }
+  }
+    return true;
+}
+
+isPalindrome('토마토바토') // false;
+isPalindrome('토마토마토') // true;
+```
+
 ### 문제 6
 
 문자열을 입력받아, 그 문자열의 모든 '부분 문자열'로 이루어진 배열을 반환하는 함수를 작성하세요.
@@ -110,12 +143,61 @@ removeDuplicates('tomato'); -> 'toma'
 removeDuplicates('bartender'); -> 'bartend'
 ```
 
+```js
+function removeDuplicates(str) {
+  let word = '';
+  for (i=0; i<str.length; i++){
+    if (word.includes(str[i])===false) {
+      word += str[i]
+    }
+  }
+  return word
+}
+
+removeDuplicates('tomato') // 'toma'
+removeDuplicates('sentence') // 'sentc'
+```
+
 ### 문제 8
 
 이메일 주소를 입력받아, 아이디 부분을 별표(`*`)로 가린 새 문자열을 반환하는 함수를 작성하세요.
 
 - 루프로 먼저 풀어보세요.
 - `split` 메소드를 이용해서 풀어보세요.
+
+```js
+// 루프
+function emailIdToStar(input) {
+  let seen = false
+  let memory = ''
+  for (i=0; i<input.length; i++){
+    if (input[i] === '@'){
+      seen = true;
+    }
+
+    if (seen === true) {
+      memory += input[i];
+    } else {
+      memory += '*'
+    }
+  }
+  return memory
+  
+}
+emailIdToStar('jhd1925@gamil.com')
+```
+
+
+```js
+// split 메소드
+function emailIdToStar(input) {
+  let email = input.split('@');
+  email[0] = '*'.repeat(email[0].length)
+  return email[0] + '@' + email[1]
+  }
+
+emailIdToStar('jhd1925@gamil.com')
+```
 
 ### 문제 9
 
