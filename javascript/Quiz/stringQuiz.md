@@ -152,6 +152,8 @@ subString('햄버거');
 // 결과: ['햄', '햄버', '햄버거', '버', '버거', '거']
 ```
 
+
+
 ### 문제 7
 
 문자열을 입력받아, 해당 문자열에서 중복된 문자가 제거된 새로운 문자열을 반환하는 함수를 작성하세요.
@@ -466,6 +468,27 @@ camelToSnake('helloWorld') // 'hello_world'
 
 Snake case의 문자열을 입력받아, camel case로 바꾼 새 문자열을 반환하는 함수를 작성하세요.
 
+```js
+  // snake_case 문자열을 입력받는다.
+function snakeToCamel(input) {
+  // 반환받을 값을 result 변수로 선언한다.
+  let result = ''
+  // 만약 글자가 언더바가 아니고 이전순서가 언더바가 아니라면 변수에 글자를 추가하고
+  for (let i=0; i<input.length; i++) {
+    if(input[i] !== '_' && input[i-1] !== '_' ) {
+      result += input[i]
+    } else if (input[i-1] === '_') {
+      // 글자 이전순서가 언더바라면 대문자로 바꾼뒤 푸쉬한다.
+      result += input[i].toUpperCase();
+    }
+  }
+  // result 값을 반환받는다.
+  return result
+}
+
+snakeToCamel('hello_world_javascript') // 'helloWorldJavascript'
+```
+
 ### 문제 15
 
 `String.prototype.split`과 똑같이 동작하는 함수를 작성하세요.
@@ -510,6 +533,28 @@ split('let,const,var', ',') // [ 'let', 'const', 'var' ]
 convertBinary('1101'); -> 13
 ```
 
+```js
+// 2진수를 표현하는 문자열을 입력받는다.
+function convertBinary(input) {
+  // 반환받을 빈 변수를 선언한다.
+  let result = 0;
+  // 입력받은 문자열을 배열로 만든다.
+  let arr = [...input];
+  // 배열을 거꾸로 뒤집는다.
+  arr.reverse();
+  // 0번 인덱스 요소가 1일 경우 2의 0제곱을 ... 2번 인덱스 요소가 1일 경우 2의 2제곱을
+  for(let i = 0; i < arr.length; i++) {
+    // 반환받을 변수에 더해나간다.
+    if(arr[i] === '1') {result += 2 ** i}
+  }
+  // 반환값을 반환받는다.
+  return result
+}
+
+convertBinary('1010') // 10
+convertBinary('10100') // 20
+```
+
 ### 문제 17
 
 숫자로만 이루어진 문자열을 입력받아, 연속된 두 짝수 사이에 하이픈(-)을 끼워넣은 문자열을 반환하는 함수를 작성하세요.
@@ -517,4 +562,38 @@ convertBinary('1101'); -> 13
 예:
 ```
 insertHyphen('437027423'); -> '4370-274-23'
+```
+
+```js
+// ### 문제 17
+
+// 숫자로만 이루어진 문자열을 입력받아, 연속된 두 짝수 사이에 하이픈(-)을 끼워넣은 문자열을 반환하는 함수를 작성하세요.
+
+// 예:
+// ```
+// insertHyphen('437027423'); -> '4370-274-23'
+// ```
+
+// 숫자로만 이루어진 문자열을 입력받는다.
+function betweenTwoEvenNum(str) {
+  // 빈 배열을 생성한다.
+  let arr = [];
+  // 짝수인덱스가 어디에서 발견되었었는지 알기 위한 변수 order를 선언하고 값0으로 지정하여 생성한다.
+  let order = 0;
+  for (let i = 0; i < str.length; i++) {
+    // 회문을 돌려 i번째 문자를 숫자로 바꾼 값과 와 i+1인덱스를 숫자로 바꾼 값이 짝수라면
+    if (parseInt(str[i]) % 2 === 0 && parseInt(str[i+1]) % 2 === 0) {
+    // order의 값번째 인덱스부터 i번 인덱스까지 빈 배열에 요소추가한다.
+    arr.push(str.slice(order,i+1));
+    order = i+1
+    // 만약 i가 마지막 순서에 도달하면 남은 문자열을 배열에 요소추가한다.
+    } else if (i === str.length - 1) {
+      arr.push(str.slice(order,i+1));
+    }
+  }
+  // 배열을 '-' 구분자를 이용해 하나의 문자열로 결합하여 반환한다. 
+  return arr.join('-');
+}
+
+betweenTwoEvenNum('344555667778899')
 ```
