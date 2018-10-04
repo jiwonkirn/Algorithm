@@ -378,6 +378,37 @@ function findLongWord(input) {
 findLongWord(prompt('단어를 입력하세요'))
 ```
 
+```js
+// 회문을 통한 방법
+
+function longestWord(input){
+
+let longest = '' // 가장 긴 단어를 담는다
+let current = '' // 회문 중에 현재 단어를 담아둔다.
+
+// 한글자씩 봤을 때
+for (let i = 0; i < input.length; i++) {
+
+  // 내가 지금 보고 있는 글자가 공백이 아니라면
+  if (input[i] !== ' ') {
+    current += input[i]
+    if (current.length > longest.length) {
+      longest = current
+    }
+  } else {
+    // 내가 지금보고있는 글자가 공백이면
+    // current가 다시 시작.
+    current = ''
+  }
+}
+
+return longest
+
+}
+
+longestWord('helloworld java') // 'helloworld'
+```
+
 ### 문제 12
 
 문자열 `s`과 자연수 `n`을 입력받아, `s`의 첫 `n`개의 문자만으로 이루어진 새 문자열을 반환하는 함수를 작성하세요.
@@ -397,6 +428,30 @@ function numLetters (s, n) {
 numLetters('탕수육탕수육탕수육', 5); // '탕수육탕수'
 ```
 
+```js
+// 회문을 이용란 방법
+
+function firstLetters(s, n) {
+  //만약 문자열의 길이가 입력받은 숫자보다 짧으면 그냥 반환한다.
+  if (s.length < n) {
+    return s
+  }
+  // 어디까지 봤는지 확인하기 위해 빈 문자열을 생성한다.
+  let memory = ''
+  for (let i =0; i < s.length; i++) {
+    // 회문을 돌 때 마다 글자를 memory에 추가한다.
+    memory += s[i]
+    // 만약 memory의 길이가 n개에 도달하면, 
+    if (memory.length === n) {
+      // 이제껏 추가한 글자 까지만 반환.
+      return memory
+    }
+  }
+  }
+
+firstLetters('hello', 4) // hell
+```
+
 ### 문제 13
 
 Camel case의 문자열을 입력받아, snake case로 바꾼 새 문자열을 반환하는 함수를 작성하세요.
@@ -408,7 +463,7 @@ function camelToSnake(input) {
   let result = '';
   // 대문자인지 소문자인지를 반별하는 루프를 만든다.
   for (let i = 0; i < input.length; i++) {
-    if (input[i] === input[i].toUpperCase()) {
+    if (i !== 0 && input[i] === input[i].toUpperCase()) {
       // 순회중 대문자가 맞으면 빈 문자열에 언더바를 추가하고
       result += '_';
       // 대문자를 소문자로 바꿔서 추가한다.
@@ -445,7 +500,7 @@ function camelToSnake(input) {
   let newArr =[]
   for (let i = 0; i < input.length; i++) {
     // 대문자인지 아닌지 확인하는 루프를 만들고 
-    if (arr[i] === arr[i].toUpperCase()) {
+    if (i !== 0 && arr[i] === arr[i].toUpperCase()) {
       // 대문자가 나오면 대문자 앞 배열에 _(언더바)를 추가한 뒤
       newArr.push('_');
       // 대문자를 소문자로 바꾼다.
@@ -524,6 +579,28 @@ function split(str1, str2) {
 
 split('let,const,var', ',') // [ 'let', 'const', 'var' ]
 ```
+
+```js
+function split(input, sep) { //separator
+  // 현재 보고 있는 단어
+  let memory = ''
+  // 반환받을 배열
+  let arr = []
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] !== sep) {
+      memory += input[i]
+    } else {
+      arr.push(memory)
+      memory = ''
+    }
+  }
+  arr.push(memory)
+  return arr
+  }
+
+split('let,const,var', ',') // [ 'let', 'const', 'var' ]
+```
+
 ### 문제 16
 
 2진수를 표현하는 문자열을 입력받아, 그 문자열이 나타내는 수 타입의 값을 반환하는 함수를 작성하세요. (`parseInt`를 사용하지 말고 작성해보세요.)
