@@ -132,7 +132,26 @@ addArray([4, 5, 6, 7, 9, 10, 200], [1, 2, 3]) // [ 5, 7, 9, 7, 9, 10, 200 ]
 ```
 
 ```js
+function addArray(arr1, arr2) {
+  let longer
+  let shorter
+  if (arr1.length > arr2.length) {
+    longer = arr1.slice()
+    shorter = arr2.slice()
+  } else {
+    longer = arr2.slice()
+    shorter = arr1.slice() // slice는 원본 arr1,2을 건드리지 않기 위해 사용함
+  }
+  for (let i = 0; i < shorter.length; i++) {
+    longer[i] += shorter[i]
+  }
+  return longer
+}
 
+const arr1 = [4, 5, 6, 7, 9, 10, 200]
+const arr2 = [1, 2, 3]
+
+addArray(arr1, arr2)
 ```
 
 ### 문제 6
@@ -151,7 +170,7 @@ function combination(arr) {
   // i가 0일때 j는 0+1부터 arr의 요소 갯수 -1 만큼 회문을 돌아서 푸쉬
   // i가 1일때 j는 1+1부터 arr의 요소 갯수 -1 만큼....
   // i가 i일때 j는 i+1부터 arr의 요소 갯수 -1 만큼....
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length - 1; i++) {
     for (let j = i + 1; j < arr.length; j++){
     result.push( [arr[i] , arr[j]] )
     }
@@ -184,6 +203,8 @@ coins(263, [100, 50, 10, 5, 1]);
 function coins(amount, arr) {
   // 루프중 총액에서 각각의 동전을 뺀 값을 나타내는 변수를 정하며, 초기값은 amount이다.
   let value = amount
+  // 코인을 내림차순으로 정렬
+  arr.sort((x,y) => y - x );
   for (let i = 0; i < arr.length; i++) {
     while(true) {
       // 총액 이 arr[i] 보다 작다면 루프를 빠져나간다.
@@ -199,12 +220,49 @@ function coins(amount, arr) {
   return `나머지는 ${value}입니다.`
 }
 
-coins(263, [100, 50, 10, 5, 1]); //100 100 50 10 1 1 1 => '나머지는 0입니다.'
+const amount = 263
+coins(amount, [50, 100, 10, 5, 1]); //100 100 50 10 1 1 1 => '나머지는 0입니다.'
+```
+
+```js
+function coins(amount, arr) {
+  let remain = amount; // 인수 복사
+  arr.sort((x,y) => y - x ); // 코인을 내림차순으로 정렬
+  let currentIndex = 0; // 배열의 인덱스를 선택하기 위한 기억값.
+  while(remain > 0 && currentIndex < arr.length) {
+    if (remain >= arr[currentIndex]) {
+      console.log(arr[currentIndex]);
+      remain -= arr[currentIndex]
+    } else {
+      currentIndex++
+    }
+  }
+}
+
+coins(263, [50, 100, 10, 5, 1]);
+```
+
+```js
+function coins(input, coinTypes) {
+  // coinTypes를 내림차순 정렬
+  coinTypes.sort((x, y) => y - x)
+  // 남은 액수
+  let remain = input
+  // 현재 내가 보고있는 동전
+  for (let i = 0; i < coinTypes.length; i++) {
+    while (coinTypes[i] <= remain) {
+      remain -= coinTypes[i]
+      console.log(coinTypes[i])
+    }
+  }
+}
+
+coins(263, [50, 100, 10, 5, 1])
 ```
 
 ### 문제 8
 
-수 타입의 값만 들어있는 배열을 입력받아, 해당 배열을 오름차순 정렬하는 함수를 작성하세요. (`Array.prototype.sort`를 사용하지 않고 작성해보세요. [선택 정렬](https://ko.wikipedia.org/wiki/%EC%84%A0%ED%83%9D_%EC%A0%95%EB%A0%AC)을 참고하세요.)
+수 타입의 값만 들어있는 배열을 입력받아, 해당 배열을 오름차순 정렬하는 함수를 작성하세요. (`Array.prototype.sort`를 사용하지 않고 작성해보세요. [선택 정렬](https://ko.wikipedia.org/wiki/%EC%84%A0%ED%83%9D_%EC%A0%95%EB%A0%AC)을 참고하세요.) 
 
 ```js
 function combination(arr) {
@@ -234,3 +292,6 @@ function combination(arr) {
 combination([4,3,1,5,2]) // [ 5, 4, 3, 2, 1 ]
 combination([9,3,1,7,0]) // [ 9, 7, 3, 1, 0 ]
 ```
+
+<!-- reduce를 이용해서 풀어봐라 -->
+
