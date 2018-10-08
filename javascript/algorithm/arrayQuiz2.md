@@ -157,6 +157,27 @@ bingo([
 ]) // -> true
 ```
 
+```js
+// 가로 빙고 => 배열의 [i]번째의 모든 요소가 1이면 빙고
+// 세로 빙고 => 모든 배열 요소의 같은 [i]번째 인덱스가 1이어야 빙고
+// 대각선 빙고 => [0][0], [1][1], [2][2]가 1이어야 빙고
+// 역대각선 빙고 => [0][2], [1][1], [2][0]이 1이어야 빙고
+function bingo(arr) {
+  for (let i = 0; i < 3; i++) {
+    if(arr[i][0] === 1 && arr[i][1] === 1 && arr[i][2] === 1) {
+      return true
+    } else if (arr[0][i] === 1 && arr[1][i] === 1 && arr[2][i] === 1) {
+      return true
+    } else if (arr[0][0] === 1 && arr[1][1] === 1 && arr[2][2] === 1) {
+      return true
+    } else if (arr[2][0] === 1 && arr[1][1] === 1 && arr[0][2] === 1) {
+      return true 
+    } 
+    }
+    return false
+  }
+```
+
 ---
 
 문제 6. (9 * 9) 오목 판이 배열에 저장되어 있습니다. 흑이 이긴 경우 1, 백이 이긴 경우 2, 아무도 이기지 않은 경우 0을 반환하는 함수를 작성하세요. (단, 칸이 비어있는 경우는 0, 흑은 1, 백은 2로 표현합니다.)
@@ -201,6 +222,58 @@ omok([
 ]) // -> 2
 ```
 
+```js
+// 오목은 가로로 연속해서 5개가 있거나
+// 세로로 연속해서 5개가 있거나
+// 대각선으로 연속해서 5개가 있어야 한다.
+// 모든 조건을 만족하지 않으면 0
+// 조건이 1이 연속하면 1
+// 조건이 2가 연속하면 2 를 반환한다.
+
+function omok(arr) {
+  
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].lastIndexOf(1) - arr[i].indexOf(1) + 1 === 5) {
+      return 1
+    } else if (arr[i].lastIndexOf(2) - arr[i].indexOf(2) + 1 === 5) {
+      return 2
+    }
+  }
+
+  for (let i = 0; i < arr.length - 5; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === 1 && arr[i+1][j] === 1 && arr[i+2][j] === 1 && arr[i+3][j] === 1 && arr[i+4][j] === 1) {
+        return 1
+      } else if (arr[i][j] === 2 && arr[i+1][j] === 2 && arr[i+2][j] === 2 && arr[i+3][j] === 2 && arr[i+4][j] === 2){
+        return 2
+      }
+    }
+  }
+
+  for (let i = 0; i < arr.length - 5; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[i][j] === 1 && arr[i-1][j-1] === 1 && arr[i-2][j-2] === 1 && arr[i-3][j-3] === 1 && arr[i-4][j-4] === 1) {
+        return 1
+      } else if (arr[i][j] === 2 && arr[i+1][j+1] === 2 && arr[i+2][j+2] === 2 && arr[i+3][j+3] === 2 && arr[i+4][j+4] === 2){
+        return 2
+      }
+    }
+  }
+
+  for (let i = 0; i < arr.length - 5; i++) {
+    for (let j = 0; j < arr[i].length - 5; j++) {
+      if (arr[i][j] === 1 && arr[i+1][j+1] === 1 && arr[i+2][j+2] === 1 && arr[i+3][j+3] === 1 && arr[i+4][j+4] === 1) {
+        return 1
+      } else if (arr[i][j] === 2 && arr[i+1][j+1] === 2 && arr[i+2][j+2] === 2 && arr[i+3][j+3] === 2 && arr[i+4][j+4] === 2){
+        return 2
+      }
+    }
+  }
+  
+  return 0
+}
+```
+
 ---
 
 문제 7. 배열을 입력받아 있는 요소 중 아무거나 하나를 골라서 반환하는 함수를 작성하세요.
@@ -211,6 +284,20 @@ omok([
 randomItem([1, 2, 3, 4, 5]) // 1, 2, 3, 4, 5 중 아무거나 반환
 ```
 
+```js
+// 반환할 배열의 인덱스를 랜덤으로 설정한다.
+
+function randomItem(arr) {
+  return arr[Math.floor(Math.random() * 5)]
+}
+
+randomItem([1, 3, 5, 7, 9])
+```
+
+```js
+
+```
+
 ---
 
 문제 8. 배열을 입력받아, 요소들의 순서를 뒤섞은 새 배열을 반환하는 함수를 작성하세요. (단, 원본 배열이 변경되어서는 안 됩니다.)
@@ -219,4 +306,19 @@ randomItem([1, 2, 3, 4, 5]) // 1, 2, 3, 4, 5 중 아무거나 반환
 
 ```js
 shuffle([1, 2, 3, 4, 5]) // [3, 1, 4, 5, 2] 와 같이 순서가 뒤섞인 새 배열 반환
+```
+
+```js
+function shuffle(arr) {
+  let result = []
+  while (result.length !== arr.length) {
+    let random = arr[Math.floor(Math.random() * 5)]
+    if (!(result.includes(random))) {
+      result.push(random)
+    }
+  }
+  return result
+}
+
+shuffle([1, 2, 3, 4, 5])
 ```
