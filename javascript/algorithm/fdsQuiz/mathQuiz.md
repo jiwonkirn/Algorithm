@@ -41,6 +41,8 @@ ceilBy5(37); -> 40
 
 ```js
 function ceilBy5(input) {
+  // 5로 나눈 나머지가 0이라면 인수를 그대로 출력하고
+  // 5로 나눈 나머지가 0이 아니라면 5 - 나머지 만큼을 인수에 더해서 출력한다.
   return input + (input % 5 !== 0 ? 5 - (input % 5) : 0)
 }
 
@@ -48,6 +50,13 @@ ceilBy5(30); //-> 30
 ceilBy5(32); //-> 35
 ceilBy5(37); //-> 40
 ceilBy5(40); //-> 40
+```
+
+```js
+function ceilBy5(input) {
+  // 인수를 5로 나눈뒤 올림하고 *5를 한다.
+  return Math.ceil(input / 5) * 5
+}
 ```
 
 ### 문제 4
@@ -72,23 +81,77 @@ function mix(arr) {
 mix([1,2,3,4,5])
 ```
 
+```js
+  function mix(arr) {
+  const result = []
+  // 원본 배열을 해치지 않기 위해 배열 newArr를 복사한다. (arr가 변하면 안된다.)
+  newArr = arr.slice()
+  for (let i = 0; i < arr.length; i++) {
+    // 인덱스를 랜덤으로 뽑는다.
+    let ran = Math.floor(Math.random() * newArr.length)
+    // 랜덤으로 뽑힌 요소를 반환받을 배열에 요소추가한다.
+    result.push(newArr[ran])
+    // 랜덤으로 뽑힌 newArr의 요소는 삭제한다.
+    newArr.splice(ran,1)
+  }
+  // 결과값을 반환한다.
+  return result
+}
+
+mix([1, 2, 3, 4, 5])
+```
+
 ### 문제 5
 
 임의의 HTML 색상 코드를 반환하는 함수를 작성하세요.
 
 ```js
 function htmlHexCode() {
-  const hex = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f']
+  // 16진수에 사용되는 숫자들을 배열에 넣는다.
+  const hex = '01234567890ABCDEF'
+  // 반환받을 배열을 선언한다.
   const result = []
+  // 순회를 돌려
   for (let i = 0; i <= 5; i++) {
+    // 0부터 15사이의 숫자를 랜덤으로 받는다.
     let ran = Math.floor(Math.random()*16)
-    console.log(ran)
+    // 배열 hex의 무작위로 선정된 ran 인덱스 요소를 result배열에 요소추가한다.
     result.push(hex[ran]);
   }
+  // 모든 요소를 문자열로 합친뒤 반환한다.
   return '#' + result.join('')
 }
 
 htmlHexCode()
+```
+
+```js
+function htmlHexCode() {
+  const hex = '01234567890ABCDEF'
+  let result = '#'
+  for (let i = 0; i <= 5; i++) {
+    let ran = Math.floor(Math.random()*16)
+    result += hex[ran]
+  }
+  return result
+}
+
+htmlHexCode()
+```
+
+### 문제 5 - 2
+
+rgb색상코드를 랜덤으로 반환하는 함수를 작성하세요.
+
+```js
+function randomRgbCode() {
+  const red = Math.floor(Math.random()*256)
+  const green = Math.floor(Math.random()*256)
+  const blue = Math.floor(Math.random()*256)
+  return `rgb(${red},${green},${blue})`
+}
+
+randomRgbCode()
 ```
 
 ### 문제 6
@@ -97,13 +160,30 @@ htmlHexCode()
 
 ```js
 function str(num) {
+// 반환받을 
 const result = []
-const arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+const arr = 'abcdefghijklmnopqrstuvwxyz'
   for (let i = 0; i < num; i++) {
     let ran = Math.floor(Math.random() * arr.length)
     result.push(arr[ran])
   }
 return result.join('')
+}
+
+str(9)
+```
+
+```js
+function str(num) {
+  // 반환받을 빈 문자열을 생성한다.
+  let result = ''
+  // 9번 반복하는 반복문을 작성한다.
+  for (let i = 0; i < num; i++) {
+    // 랜덤의 유니코드를 변환한 문자열을 result에 더한다.
+    result += String.fromCodePoint(Math.floor(Math.random() * 65536))
+  }
+  // 반환한다.
+  return result
 }
 
 str(9)
