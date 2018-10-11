@@ -109,6 +109,8 @@ flatten([
 
 문제 4. 2차원 배열을 입력받아 1차원 배열로 바꾸는 함수를 작성하세요. (`Array.prototype.reduce`를 이용하세요)
 
+reduce 중첩 (개인적인 시도)
+
 ```js
 function flatten(arr) {
   // 반환받을 빈 배열을 생성한다.
@@ -129,6 +131,21 @@ flatten([
   [4, 5, 6],
   [7, 8, 9, 10, 11, 12]
 ]) // -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+```
+
+concat 메소드 이용하기 (강사님 방법)
+
+```js
+function flatten(arr) {
+  // 누적값: 지금까지 본 배열이 다 이어붙여진 새 배열
+  return arr.reduce((acc, innerArr) => acc.concat(innerArr) , [])
+}
+
+flatten([
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9, 10, 11, 12]
+])
 ```
 
 ---
@@ -178,6 +195,84 @@ function bingo(arr) {
   }
 ```
 
+```js
+function bingo(arr) {
+  // 가로
+  for (let i = 0; i < 3; i++) {
+    let checked = true
+    for (let j = 0; j < 3; j++) {
+      if (arr[i][j] === 0) {
+        checked = false
+      }
+    }
+    if (checked === true) {
+      return true
+    }
+  }
+
+  // 세로
+  for (let i = 0; i < 3; i++) {
+    let checked = true
+    for (let j = 0; j < 3; j++) {
+      if (arr[j][i] === 0) {
+        checked = false
+      }
+    }
+    if (checked === true) {
+      return true
+    }
+  }
+
+  // 대각선
+  {
+    let checked = true
+    for (let i = 0; i < 3; i++) {
+      if (arr[i][i] === 0) {
+        checked = false
+      }
+    }
+    if (checked === true) {
+      return true
+    }
+  }
+
+  // 역대각선
+  {
+    let checked = true
+    for (let i = 0; i < 3; i++) {
+      if (arr[i][2-i] === 0) {
+        checked = false
+      }
+    }
+    if (checked === true) {
+      return true
+    }
+  }
+
+  return false
+
+}
+
+
+bingo([
+  [0, 1, 0],
+  [0, 1, 1],
+  [0, 0, 1]
+]) // -> false
+
+bingo([
+  [1, 1, 0],
+  [0, 1, 1],
+  [0, 0, 1]
+]) // -> true
+
+bingo([
+  [1, 0, 1],
+  [0, 1, 1],
+  [1, 0, 0]
+]) // -> true
+```
+
 ---
 
 문제 6. (9 * 9) 오목 판이 배열에 저장되어 있습니다. 흑이 이긴 경우 1, 백이 이긴 경우 2, 아무도 이기지 않은 경우 0을 반환하는 함수를 작성하세요. (단, 칸이 비어있는 경우는 0, 흑은 1, 백은 2로 표현합니다.)
@@ -223,55 +318,158 @@ omok([
 ```
 
 ```js
-// 오목은 가로로 연속해서 5개가 있거나
-// 세로로 연속해서 5개가 있거나
-// 대각선으로 연속해서 5개가 있어야 한다.
-// 모든 조건을 만족하지 않으면 0
-// 조건이 1이 연속하면 1
-// 조건이 2가 연속하면 2 를 반환한다.
-
 function omok(arr) {
-  
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].lastIndexOf(1) - arr[i].indexOf(1) + 1 === 5) {
-      return 1
-    } else if (arr[i].lastIndexOf(2) - arr[i].indexOf(2) + 1 === 5) {
-      return 2
-    }
-  }
-
-  for (let i = 0; i < arr.length - 5; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      if (arr[i][j] === 1 && arr[i+1][j] === 1 && arr[i+2][j] === 1 && arr[i+3][j] === 1 && arr[i+4][j] === 1) {
+  // 가로오목 ====================
+  for (let i = 0; i < 9; i++) {
+    let memory1 = 0;
+    let memory2 = 0;
+    for (let j = 0; j < 9; j++) {
+      // 흑돌승리
+      if (memory1 === 5) {
         return 1
-      } else if (arr[i][j] === 2 && arr[i+1][j] === 2 && arr[i+2][j] === 2 && arr[i+3][j] === 2 && arr[i+4][j] === 2){
+      } else if (arr[i][j] === 1) {
+        memory1++
+      } else if (arr[i][j] === 0) {
+        memory1 = 0
+      }
+      // 백돌승리
+      if (memory2 === 10) {
         return 2
+      } else if (arr[i][j] === 2) {
+        memory2 += 2
+      } else if (arr[i][j] === 0) {
+        memory2 = 0
       }
     }
   }
 
-  for (let i = 0; i < arr.length - 5; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      if (arr[i][j] === 1 && arr[i-1][j-1] === 1 && arr[i-2][j-2] === 1 && arr[i-3][j-3] === 1 && arr[i-4][j-4] === 1) {
+  // 세로오목 ====================
+  for (let i = 0; i < 9; i++) {
+    let memory1 = 0;
+    let memory2 = 0;
+    for (let j = 0; j < 9; j++) {
+      // 흑돌승리
+      if (memory1 === 5) {
         return 1
-      } else if (arr[i][j] === 2 && arr[i+1][j+1] === 2 && arr[i+2][j+2] === 2 && arr[i+3][j+3] === 2 && arr[i+4][j+4] === 2){
+      } else if (arr[j][i] === 1) {
+        memory1++
+      } else if (arr[j][i] === 0) {
+        memory1 = 0
+      }
+      // 백돌승리
+      if (memory2 === 10) {
         return 2
+      } else if (arr[j][i] === 2) {
+        memory2 += 2
+      } else if (arr[j][i] === 0) {
+        memory2 = 0
       }
     }
   }
 
-  for (let i = 0; i < arr.length - 5; i++) {
-    for (let j = 0; j < arr[i].length - 5; j++) {
-      if (arr[i][j] === 1 && arr[i+1][j+1] === 1 && arr[i+2][j+2] === 1 && arr[i+3][j+3] === 1 && arr[i+4][j+4] === 1) {
+  // 대각선오목 ====================
+  for (let i = 0; i < 5; i++) {
+    let memory1 = 0;
+    let memory2 = 0;
+    for (let j = 0; j < 5; j++) {
+      // 흑돌승리
+      if (memory1 === 1) {
         return 1
-      } else if (arr[i][j] === 2 && arr[i+1][j+1] === 2 && arr[i+2][j+2] === 2 && arr[i+3][j+3] === 2 && arr[i+4][j+4] === 2){
+      } else if (
+        arr[i][j] === 1 &&
+        arr[i+1][j+1] === 1 &&
+        arr[i+2][j+2] === 1 &&
+        arr[i+3][j+3] === 1 &&
+        arr[i+4][j+4] === 1
+        ) {
+        memory1++
+      }
+      // 백돌승리
+      if (memory2 === 2) {
         return 2
+      } else if (
+        arr[i][j] === 2 &&
+        arr[i+1][j+1] === 2 &&
+        arr[i+2][j+2] === 2 &&
+        arr[i+3][j+3] === 2 &&
+        arr[i+4][j+4] === 2
+      ) {
+        memory2 += 2
       }
     }
   }
-  
+
+  // 반대방향 대각선 오목
+  for (let i = 0; i <= 4; i++) {
+    let memory1 = 0;
+    let memory2 = 0;
+    for (let j = 8; j >= 4; j--) {
+      // 흑돌승리
+      if (memory1 === 1) {
+        return 1
+      } else if (
+        arr[i][j] === 1 &&
+        arr[i+1][j-1] === 1 &&
+        arr[i+2][j-2] === 1 &&
+        arr[i+3][j-3] === 1 &&
+        arr[i+4][j-4] === 1
+        ) {
+        memory1++
+      }
+      // 백돌승리
+      if (memory2 === 2) {
+        return 2
+      } else if (
+        arr[i][j] === 2 &&
+        arr[i+1][j-1] === 2 &&
+        arr[i+2][j-2] === 2 &&
+        arr[i+3][j-3] === 2 &&
+        arr[i+4][j-4] === 2
+      ) {
+        memory2 += 2
+      }
+    }
+  }
+
   return 0
 }
+
+
+omok([
+  [1, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [0, 0, 1, 0, 0, 0, 2, 0, 0,],
+  [0, 0, 0, 1, 0, 0, 2, 0, 0,],
+  [0, 0, 0, 0, 1, 0, 2, 0, 0,],
+  [0, 0, 0, 0, 0, 1, 2, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 1,]
+]) // -> 1
+
+omok([
+  [0, 0, 0, 0, 0, 0, 0, 0, 2,],
+  [0, 0, 0, 0, 0, 1, 0, 0, 0,],
+  [0, 0, 0, 1, 1, 0, 2, 0, 0,],
+  [0, 0, 0, 1, 0, 2, 0, 0, 0,],
+  [0, 0, 0, 1, 2, 0, 0, 0, 0,],
+  [0, 0, 0, 2, 0, 0, 0, 0, 0,],
+  [0, 0, 2, 0, 0, 0, 2, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [2, 0, 0, 0, 0, 0, 0, 0, 0,]
+]) // -> 2
+
+omok([
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 1, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0,]
+]) // -> 1
 ```
 
 ---
