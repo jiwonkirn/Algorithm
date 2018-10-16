@@ -11,6 +11,9 @@
 
 - `disabled` => 선택조차 못하게 하는 `boolean attribute`
 
+---
+
+## 문법에 대한 내용
 
 아래와 같이 함수명을 넣어도 실행된다.
 
@@ -43,6 +46,8 @@ formEl.insertBefore(divEl2, null)
 이벤트 전파 : 이벤트가 들어올 때는 capture, 나갈 때는 bubbling이라고 하는데, bubbling단계에서 마우스 이벤트가 실행된다.
 이 때, 마우스로 리프 요소를 클릭했을 때 리프 요소의 부모요소, 부모요소의 부모요소 등 bubbling 할 때 전부 마우스 이벤트가 실행된다.
 하지만 아래와 같이 콜백 마지막에 `true`를 입력하면 capture 단계에서 출력된다.
+
+버블링이 일어나는 이벤트도 있고, 일어나지 않는 이벤트도 있다.
 
 설정을 따로 하지 않으면 `button` -> `inner` -> `outer` 순서대로 마우스 이벤트가 진행된다.
 
@@ -84,11 +89,55 @@ document.querySelector('button').addEventListener('click', e => {
 }, true);
 ```
 
+이벤트의 실제 요소와 이벤트리스너가 등록된 요소는 다를 수 있다. 정확히 어떤 것을 지정해야 하는지에 따라 실제로 어디서 실행됐는지 알 필요가 있다.
+
+```js
+e.target // 실제로 이벤트를 일으킨 요소
+e.currentTarget // 이벤트 전파 과정 중 현재 이벤트가 위치한 요소 (이벤트 리스너를 실행시킨 요소)
+e.target.value // 이벤트를 을으킨 요소의 값
+```
+
+### 폼 이벤트
+
+- change : 보통 체크박스에서 체크나 헤제를 함으로써 변경되었을 때 사용.
+
+### https://httpbin.org/post
+
+`action`에 https://httpbin.org/post 주소를 넣으면 해당 주소에 전송이 되고, 테스트용도로 쓰인다.
+
+### button
+
+`form` 태그 안에 있는 버튼은 `submit` 타입을 지정하지 않아도 `form`태그 안에 있는 내용이 전송된다.
+
+`button` 의 `tpye`
+
+- `submit` : 내용을 제출한다. (defalut)
+
+- `reset` : 값을 기본값으로 초기화한다. (textarea의 값이 초기값)
+
+- `button`
+
+```html
+<button type="submit">전송</button>
+<button type="reset">초기화</button>
+```
+
+요즘은 `form`태그의 전송기능을 잘 사용하지 않는다. 하지만 다른 기능들이 유용하기 때문에 `form`태그를 사용한다.
+
+DOM에서 input태그 지정
+
+```js
+  const elements = e.target.elements;
+  elements.id.value
+  // name에 'id'라고 적혀있기 때문에 해당 input태그를 불러온다.
+  // elements는 input태그에서만 사용한다.
+```
+
+[`input`태그를 이용한 할 일 만들기](https://codepen.io/jiwonkirn/pen/wYPLdG)
+
 ---
 
 ## 실습
 
 [할일 만들기](https://codepen.io/jiwonkirn/pen/LgzooX)
-
-
 
