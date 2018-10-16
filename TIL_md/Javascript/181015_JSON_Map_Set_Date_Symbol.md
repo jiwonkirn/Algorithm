@@ -74,6 +74,16 @@ setInterval(() => {
 }, 1000)  // 자바스크립트의 시간은 정확하지는 않다.
 ```
 
+유닉스 시간을 UTC시간으로 바꾸는 방법
+
+```js
+const now = new Date()
+const time = now.getTime()
+
+console.log(now.toISOString())
+console.log(new Date(time - 60000).toISOString())
+```
+
 moment.js 라는 라이브러리를 많이 사용한다.
 
 [moment.js](https://momentjs.com/)
