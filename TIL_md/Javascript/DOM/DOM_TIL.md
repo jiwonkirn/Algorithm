@@ -135,6 +135,22 @@ DOM에서 input태그 지정
 
 [`input`태그를 이용한 할 일 만들기](https://codepen.io/jiwonkirn/pen/wYPLdG)
 
+### mouseover/mouseout, mouseenter/mouseleave
+
+`mouseover` / `mouseout` 이벤트는 버블링이 일어나기 때문에 자식요소를 오버해도 부모요소의 리스너가 실행된다.
+
+`mouseover` / `mouseout` 이벤트는 버블링이 일어나지 않기 때문에 자식요소를 오버하면 자식요소만, 부모요소를 오버하면 부모요소만 이벤트를 발생킨다.
+
+### 화면을 보였다 안보였다 하는 방법
+
+- 화면에 새로운 요소를 insert, append 같은 방법으로 넣는 방법
+
+  실제로 몇 개의 요소를 표시, 생성해야 할지 모르는 경우 사용한다.
+
+- 스타일을 다르게 넣어서 쓰는 방법
+
+  실제로 몇 개의 요소를 표시하고자 하는 것을 아는 경우, 단순한 경우
+
 ---
 
 ## 실습
