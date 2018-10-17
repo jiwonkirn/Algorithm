@@ -40,3 +40,5 @@ git config --global core.autocrlf true =>
 ## 협업
 
 한명이 repository를 만들고 권한을 준다.
+
+`merge conflict`
