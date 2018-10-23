@@ -1,6 +1,6 @@
 # 프로그래머스 코딩 테스트
 
-## 2018년 10월
+## LEVEL 1
 
 ### 서울에서 김서방 찾기
 
@@ -203,5 +203,101 @@ function solution(answers) {
 
 
     return answer;
+}
+```
+
+---
+
+### K번째 수
+
+배열 array의 i번째 숫자부터 j번째 숫자까지 자르고 정렬했을 때, k번째에 있는 수를 구하려 합니다.
+
+예를 들어 array가 [1, 5, 2, 6, 3, 7, 4], i = 2, j = 5, k = 3이라면
+
+1. array의 2번째부터 5번째까지 자르면 [5, 2, 6, 3]입니다.
+2. 1에서 나온 배열을 정렬하면 [2, 3, 5, 6]입니다.
+3. 2에서 나온 배열의 3번째 숫자는 5입니다.
+
+배열 array, [i, j, k]를 원소로 가진 2차원 배열 commands가 매개변수로 주어질 때, commands의 모든 원소에 대해 앞서 설명한 연산을 적용했을 때 나온 결과를 배열에 담아 return 하도록 solution 함수를 작성해주세요.
+
+제한사항
+* array의 길이는 1 이상 100 이하입니다.
+* array의 각 원소는 1 이상 100 이하입니다.
+* commands의 길이는 1 이상 50 이하입니다.
+* commands의 각 원소는 길이가 3입니다.
+
+```js
+function solution(array, com) {
+    const result = []
+    for (let item of com) {
+        const arr = [...array]
+        const sliceArr = arr.splice(item[0] - 1 , item[1] - item[0] + 1)
+        sliceArr.sort((x, y) => x - y)
+        result.push(sliceArr[item[2] - 1])
+    }
+    return result    
+}
+```
+
+```js
+function solution(array, commands) {
+    return commands.map(v => {
+        return array.slice(v[0] - 1, v[1]).sort((a, b) => a - b).slice(v[2] - 1, v[2])[0];
+    });
+}
+```
+
+---
+
+### 체육복
+
+오늘은 체육수업이 있는 날입니다. 그런데 점심시간에 도둑이 들어 몇몇 학생의 체육복이 도난을 당했습니다. 다행히 일부 학생들이 여벌의 체육복을 가져왔습니다. 학생들의 번호는 체격 순으로 매겨져 있기 때문에 바로 앞번호의 학생이나 바로 뒷번호의 학생에게만 체육복을 빌려주려고 합니다.
+
+예를 들어, 4번 학생은 3번 학생이나 5번 학생에게만 체육복을 빌려줄 수 있습니다. 당연히 체육복을 2벌 가져온 학생의 체육복이 도난을 당했다면, 여벌의 체육복을 빌려줄 수 없습니다.
+
+체육복이 없으면 체육수업을 들을 수 없기 때문에 체육복을 적절히 빌려 최대한 많은 학생이 체육수업을 듣고 싶습니다.
+
+전체 학생의 수 n, 체육복을 도난당한 학생들의 번호가 담긴 배열 lost, 여벌의 체육복을 가져온 학생들의 번호가 담긴 배열 reserve가 매개변수로 주어질 때, 체육수업을 들을 수 있는 학생의 최댓값을 return 하도록 solution 함수를 작성해주세요.
+
+제한사항
+* 전체 학생의 수는 2명 이상 30명 이하입니다.
+* 체육복을 도난당한 학생의 수는 2명 이상 n명 이하이고 중복되는 번호는 없습니다.
+* 여벌의 체육복을 가져온 학생의 수는 1명 이상 n명 이하이고 중복되는 번호는 없습니다.
+
+나의 풀이
+```js
+function solution(n, lost = 0, reserve = 0) {
+    const lostCopy = [...lost]
+    const reserveCopy = [...reserve]
+    
+    for (let item of reserve) {
+        if (lostCopy.includes(item)) {
+            reserveCopy.splice(reserveCopy.indexOf(item), 1)
+            lostCopy.splice(lostCopy.indexOf(item), 1)
+        }
+    }
+    
+    for (let item of reserveCopy) {
+      let idx1 = lostCopy.indexOf(item - 1)
+      let idx2 = lostCopy.indexOf(item + 1)
+      if (idx1 !== -1) {
+          lostCopy.splice(idx1, 1)
+          continue
+      } else if (idx2 !== -1) {
+          lostCopy.splice(idx2, 1)
+      }
+    }   
+    return n - lostCopy.length
+}
+```
+
+다른사람의 풀이
+```js
+function solution(n, lost, reserve) {      
+    return n - lost.filter(a => {
+        const b = reserve.find(r => Math.abs(r-a) <= 1)
+        if(!b) return true
+        reserve = reserve.filter(r => r !== b)
+    }).length
 }
 ```
