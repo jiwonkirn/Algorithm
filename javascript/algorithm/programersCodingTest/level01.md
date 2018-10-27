@@ -400,13 +400,132 @@ function solution(arr) {
     })
     return answer;
 }
-```
+
+[```
 
 다른사람의 풀이
 ```js
 function solution(arr)
 {
     return arr.filter((val,index) => val != arr[index+1]);
+}
+```
+
+---
+
+### 나누어 떨어지는 숫자 배열
+
+array의 각 element 중 divisor로 나누어 떨어지는 값을 오름차순으로 정렬한 배열을 반환하는 함수, solution을 작성해주세요.
+divisor로 나누어 떨어지는 element가 하나도 없다면 배열에 -1을 담아 반환하세요.
+
+제한사항
+* arr은 자연수를 담은 배열입니다.
+* 정수 i, j에 대해 i ≠ j 이면 arr[i] ≠ arr[j] 입니다.
+* divisor는 자연수입니다.
+* array는 길이 1 이상인 배열입니다.
+
+내 풀이
+```js
+function solution(arr, divisor) {
+    const newArr = arr.filter(x => x % divisor === 0).sort((x, y) => x - y)
+    return newArr.length !== 0 ? newArr : [ -1 ]
+}
+```
+
+다른사람의 풀이
+```js
+function solution(arr, divisor) {
+    var answer = [];
+    arr.map((o) => {
+        o % divisor === 0 && answer.push(o);
+    })
+    return answer.length ? answer.sort((a, b) => a - b) : [-1];
+}
+```
+
+---
+
+### 문자열 내 마음대로 정렬하기
+
+문자열로 구성된 리스트 strings와, 정수 n이 주어졌을 때, 각 문자열의 인덱스 n번째 글자를 기준으로 오름차순 정렬하려 합니다. 예를 들어 strings가 [sun, bed, car]이고 n이 1이면 각 단어의 인덱스 1의 문자 u, e, a로 strings를 정렬합니다.
+
+제한 조건
+* strings는 길이 1 이상, 50이하인 배열입니다.
+* strings의 원소는 소문자 알파벳으로 이루어져 있습니다.
+* strings의 원소는 길이 1 이상, 100이하인 문자열입니다.
+* 모든 strings의 원소의 길이는 n보다 큽니다.
+* 인덱스 1의 문자가 같은 문자열이 여럿 일 경우, 사전순으로 앞선 문자열이 앞쪽에 위치합니다.
+
+내 풀이
+```js
+function solution(strings, n) {
+    return strings.sort((x, y) => 
+                        x[n] !== y[n] ? 
+                        x[n].localeCompare(y[n]) :
+                        x.localeCompare(y)
+    )
+}
+```
+---
+
+### 문자열 내 p와 y의 개수
+
+대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
+
+예를들어 s가 pPoooyY면 true를 return하고 Pyy라면 false를 return합니다.
+
+제한사항
+* 문자열 s의 길이 : 50 이하의 자연수
+* 문자열 s는 알파벳으로만 이루어져 있습니다.
+
+내 풀이1
+```js
+function solution(s){
+    let strP = 0;
+    let strY = 0;
+    for (let item of s.toLowerCase()) {
+        if (item === 'p') strP++
+        else if (item === 'y') strY++
+    }
+    return strP === strY ? true : false
+}
+```
+
+다른 사람의 풀이
+```js
+function numPY(s){
+    return s.toUpperCase().split("P").length === s.toUpperCase().split("Y").length;
+}
+```
+
+다른 사람의 풀이2
+```js
+function numPY(s) {
+  return s.match(/p/ig).length == s.match(/y/ig).length;
+}
+```
+
+---
+
+### 문자열 내림차순으로 배치하기
+
+문자열 s에 나타나는 문자를 큰것부터 작은 순으로 정렬해 새로운 문자열을 리턴하는 함수, solution을 완성해주세요.
+s는 영문 대소문자로만 구성되어 있으며, 대문자는 소문자보다 작은 것으로 간주합니다.
+
+제한 사항
+* str은 길이 1 이상인 문자열입니다.
+
+내 풀이
+```js
+function solution(s) {
+    return [...s].sort((x, y) => x > y ? -1 : 1).join('')
+}
+```
+
+다른 사람의 풀이
+```js
+function solution(s) {
+    return s.split("").sort().reverse().join("");
 }
 ```
 
