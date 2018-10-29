@@ -400,8 +400,7 @@ function solution(arr) {
     })
     return answer;
 }
-
-[```
+```
 
 다른사람의 풀이
 ```js
@@ -553,3 +552,35 @@ function solution(n) {
 ```
 
 ---
+
+### 문자열 다루기 기본
+
+문자열 s의 길이가 4혹은 6이고, 숫자로만 구성되있는지 확인해주는 함수, solution을 완성하세요.
+예를들어 s가 a234이면 False를 리턴하고 1234라면 True를 리턴하면 됩니다.
+
+제한 사항
+* s는 길이 1 이상, 길이 8 이하인 문자열입니다.
+
+내 풀이
+```js
+function solution(s) {
+    return (s.length !== 4 && s.length !== 6) ? 
+        false : [...s].some(x => Number.isNaN(parseInt(x))) ? 
+        false : true
+}
+```
+
+다른사람의 풀이1 (isNaN 함수)
+```js
+function solution(s) {
+    return s.length === 4 || s.legnth === 6 ? !isNaN(x) : false
+}
+```
+
+다른사람 풀이2 (== 연산자)
+```js
+function solution(s) {
+    return (s.legnth === 6 || s.length === 4) && s == parseInt(s) ? true : false
+}
+```
+
