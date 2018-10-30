@@ -109,11 +109,11 @@ Express에서 EJS 사용하기
 
 - EJS 설치
 
-`$ npm install --save ejs`
+  `$ npm install --save ejs`
 
 - template engine 설정
 
-`app.set('view engine', 'ejs')`
+  s`app.set('view engine', 'ejs')`
 
 - res.render()
 
@@ -131,3 +131,49 @@ res.render('index.ejs', data) // index.ejs라는 템플릿에 data를 입혀서 
 [EJS 실습](https://glitch.com/edit/#!/wax-bit?path=README.md:1:0)
 
 * **slug**: 특정 자료(객체)를 대표하는 짧은 문자열. 객체에 들어있고, url에 사용하기 위해 넣는다.
+
+---
+
+## HTML Form
+
+### HTML form의 기본 동작
+
+HTML form을 전송하면, 입력된 정보가 기본적으로 percent encoding 되어 요청된다.
+
+- GET: query string
+
+```html
+GET /search?query=%EA%B0%9C&sort=latest HTTP/1.1
+...
+
+<!-- 아이디 비밀번호 전송 -->
+Request URL: https://httpbin.org/get?username=kjw1925&password=920913
+
+<!-- 한글로 입력 -->
+Request URL: https://httpbin.org/get?username=%EA%B9%80%EC%A7%80%EC%9B%90&password=920913
+```
+
+- POST: 요청 body
+
+```html
+POST /form HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+...
+
+home=Cosby&favorite+flavor=flies
+
+<!-- 아이디 비밀번호 전송 -->
+Request URL: https://httpbin.org/post
+
+<!-- 요청바디에 담겨서 날아온다 -->
+form data: username=kjw1925&password=920913
+```
+
+header의 `Content-Type`에 이 파일이 어떤 타입인지 나타내준다. (MINE 타입)
+
+request body JSON을 요청한다고 하면 content-type을 알맞게 적어둬야한다.
+
+[MINE 타입](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types)
+
+[HTML form 예제](https://glitch.com/edit/#!/animated-radiator?path=server.js:21:0)
+
