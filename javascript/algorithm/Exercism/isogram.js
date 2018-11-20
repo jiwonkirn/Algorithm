@@ -7,4 +7,4 @@ function isIsogram(input) {
 
 }
 
-export { isIsogram }
+export { isIsogram } 
