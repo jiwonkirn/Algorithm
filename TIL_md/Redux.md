@@ -43,3 +43,29 @@ function rootReducer(state = {}, action) {
 
 const store = createStore(rootReducer);
 ```
+
+## React에 연결하기
+
+React와 Redux를 연결하는 라이브러리를 깔아야 한다. (React Redux)
+
+[실습예제](https://codesandbox.io/s/l9334949jz)
+
+duck 기법
+
+- 장점: 쓰기 편리하다
+- 단점: 확장성이 떨어진다.
+
+리듀서, 액션 끼리 묶기
+
+- 장접: 쓰기 어렵다.
+- 단점: 확장성이 좋다.
+
+## Redux의 단점
+
+- 사람이 관례로 해결하는 부분이 많다. => 자동으로 해결해주는 라이브러리(MobX)
+- 모든 상태가 하나의 스토어 안에 저장된다는 것은 프로젝트 규모가 커질수록 관리하기 어려워진다.
+- 큰 상태트리가 생긴다: 상태가 하나만 바뀌어도 모든 화면이 다시 그려진다. 때문에 connect를 사용하면 purecomponent처럼 동작하게 하여 최적화가 되어있다. 하지만 reducer를 모두 실행해야 하는 부하는 여전히 존재한다.
+
+  > 아주 빠르게 동작하는 부분에서 dispatch를 하는 것은 절대 해서는 안된다. 예를 들어 scroll이벤트가 있는데, 이런 자주 변경되는 상태는 react에 저장해야 한다.
+
+- purecomponent는 불변성을 사용한다. 때문에 redux로 코딩할 때는 **반드시 불변성을 지켜야한다.**
