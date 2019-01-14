@@ -1,44 +1,27 @@
-function encode(input) {
-    const result = []
-    let count = 1
-    const arr = input.split('')
-    const arr2 = arr.map((item, index) => item === arr[index+1] ? item = 1 : item)
-    for (const item of arr2) {
-      if (typeof item === 'number') {
-        count++
-      } else {
-        if (count > 1) result.push(count)
-        result.push(item)
-        count = 1
-      }
-    }
-    return result.join('')
+// mine
+const encode = input => {
+  const arr = [];
+  input.split("").forEach(item => {
+    if (!arr.some(i => i === item)) arr.push(item);
+  });
+  let result = input;
+  for (let i of arr) {
+    const reg = new RegExp(`${i}+`, "g");
+    result = result.replace(reg, a => (a.length === 1 ? i : a.length + i));
   }
+  return result;
+};
 
-  function decode(input) {
-    const arr = [...input]
-    const result = []
-    const result2 = []
-    let count = ''
-    arr.forEach(item => {
-      if (!Number.isNaN(parseInt(item))) {
-        count += item
-      } else {
-        if (count !== '') result.push(parseInt(count))
-        result.push(item)
-        count = ''
-      }
-    })
-    result.forEach((item, index) => {
-      if (typeof item === 'number') {
-        for (let i = 0; i < item-1; i++) {
-          result2.push(result[index+1])
-        }
-      } else {
-        result2.push(item)
-      }
-    })
-    return result2.join('')
-  }
+const decode = input => {
+  return input.replace(/\d+\D|\D/g, a =>
+    a.match(/\D/)[0].repeat(a.match(/\d+/) ? a.match(/\d+/)[0] : 1)
+  );
+};
 
-export {encode, decode}
+export { encode, decode };
+
+// others
+const RLE = {
+  encode: str => str.replace(/(\w)\1+/g, (m, c) => `${m.length}${c}`),
+  decode: str => str.replace(/(\d+)(\w)/g, (_, d, c) => c.repeat(d))
+};
