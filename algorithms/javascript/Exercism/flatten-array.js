@@ -11,6 +11,17 @@ export default class Flattener {
   }
 }
 
+// Array.prototype.concat
+export default class Flattener {
+  flatten(arr) {
+    let result = arr.slice()
+    while (result.some(isArray)) {
+      result = [].concat(...result)
+    }
+    return result.filter(i => i != null)
+  }
+}
+
 // generator
 export default class Flattener {
   *search(arr) {
