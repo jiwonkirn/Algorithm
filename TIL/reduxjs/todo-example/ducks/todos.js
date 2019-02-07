@@ -1,3 +1,5 @@
+import { v4 } from "node-uuid";
+
 /* ===========
   action type
   =========== */
@@ -9,11 +11,11 @@ const REMOVE_TODO = "REMOVE_TODO";
   reducer
   ======= */
 // todo(obj) reducer
-const todo = (state = {}, action, id) => {
+const todo = (state = {}, action) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        id: id + 1,
+        id: v4(),
         text: action.text,
         complete: false
       };
@@ -35,8 +37,7 @@ const todo = (state = {}, action, id) => {
 export default function(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
-      let id = state.length > 0 ? Math.max(...state.map(i => i.id)) : 0;
-      return [...state, todo(undefined, action, id)];
+      return [...state, todo(undefined, action)];
 
     case TOGGLE_TODO:
       return state.map(item => todo(item, action));
