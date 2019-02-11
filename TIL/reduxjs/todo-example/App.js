@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import AddTodo from "./components/AddTodo";
-import VisibleTodoList from "./containers/VisibilTodoList";
+import VisibleTodoList from "./containers/VisibleTodoList";
 import Footer from "./components/Footer";
 
-export default function App({ match }) {
+export default function App() {
   return (
     <>
       <AddTodo />
-      <VisibleTodoList filter={match.params.filter || "all"} />
+      <VisibleTodoList />
       <Footer />
     </>
   );

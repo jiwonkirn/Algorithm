@@ -1,19 +1,20 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import React from "react";
 
-function FilterLink({ filter, children }) {
-  return (
-    <Link
-      to={filter === "all" ? "" : filter}
-      activeStyle={{
-        textDecoration: "none",
-        color: "black"
-      }}
-    >
-      {children}
-    </Link>
-  );
-}
+import { NavLink } from "react-router-dom";
+
+const FilterLink = ({ filter, children }) => (
+  <NavLink
+    exact
+    to={"/" + (filter === "all" ? "" : filter)}
+    activeStyle={{
+      textDecoration: "none",
+      color: "black"
+    }}
+  >
+    {children}
+  </NavLink>
+);
 
 // import { connect } from "react-redux";
 // import { setVisibilityFilter } from "../ducks/filter";

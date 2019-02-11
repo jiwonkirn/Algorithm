@@ -1,4 +1,7 @@
+import todo from "./todo";
+import { combineReducers } from "redux";
 import { v4 } from "node-uuid";
+import * as api from "../api";
 
 /* ===========
   action type
@@ -10,51 +13,69 @@ const REMOVE_TODO = "REMOVE_TODO";
 /* ======
   reducer
   ======= */
-// todo(obj) reducer
-const todo = (state = {}, action) => {
+
+// todos(array) reducer
+const byId = (state = {}, action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case "ADD_TODO":
+    case "TOGGLE_TODO":
       return {
-        id: v4(),
-        text: action.text,
-        complete: false
+        ...state,
+        [action.id]: todo(state[action.id], action)
       };
-
-    case TOGGLE_TODO:
-      if (state.id === action.id) {
-        return Object.assign({}, state, {
-          complete: !state.complete
-        });
-      }
-      return state;
-
     default:
       return state;
   }
 };
 
-// todos(array) reducer
-export default function(state = [], action) {
+const allIds = (state = [], action) => {
   switch (action.type) {
-    case ADD_TODO:
-      return [...state, todo(undefined, action)];
-
-    case TOGGLE_TODO:
-      return state.map(item => todo(item, action));
-
-    case REMOVE_TODO:
-      return state.filter(item => item.id !== action.id);
-
+    case "ADD_TODO":
+      return [...state, action.id];
     default:
       return state;
   }
-}
+};
+
+const todos = combineReducers({
+  byId,
+  allIds
+});
+
+export default todos;
+
+const getAllTodos = state => state.allIds.map(id => state.byId[id]);
+
+export const getVisibleTodos = (state, filter) => {
+  const allTodos = getAllTodos(state);
+  switch (filter) {
+    case "all":
+      return allTodos;
+    case "completed":
+      return allTodos.filter(t => t.completed);
+    case "active":
+      return allTodos.filter(t => !t.completed);
+    default:
+      throw new Error(`Unknown filter: ${filter}.`);
+  }
+};
 
 /* ====== 
   action
   ======= */
+// receive todos
+const receiveTodos = (filter, response) => ({
+  type: "RECEIVE_TODOS",
+  filter,
+  response
+});
+
+export const fetchTodos = filter =>
+  api.fetchTodos(filter).then(res => receiveTodos(filter, res));
+
 // add todo
 export const addTodo = text => ({
+  id: v4(),
   type: ADD_TODO,
   text: text
 });
