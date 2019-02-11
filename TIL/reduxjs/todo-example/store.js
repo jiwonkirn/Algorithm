@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./ducks";
+import todoApp from "./ducks";
 import thunk from "redux-thunk";
 
 const addLoggingToDispatch = store => {
@@ -24,7 +24,6 @@ const addPromiseSupportToDispatch = store => {
   const rawDispatch = store.dispatch;
 
   return action => {
-    console.log(action);
     if (typeof action.then === "function") {
       return action.then(rawDispatch);
     }
@@ -35,14 +34,7 @@ const addPromiseSupportToDispatch = store => {
 const configureStore = () => {
   // const middleware = [thunk];
 
-  const store = createStore(
-    rootReducer,
-    compose(
-      // applyMiddleware(...middleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  );
+  const store = createStore(todoApp);
 
   // "production"은 배포 모드
   // "development"는 개발 모드이다.
