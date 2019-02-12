@@ -67,6 +67,7 @@ export default configureStore;
 import { createStore } from "redux";
 import todoApp from "./ducks";
 
+// logging 하는 함수
 const logger = store => next => {
   if (!console.group) {
     return next;
@@ -85,6 +86,7 @@ const logger = store => next => {
   };
 };
 
+// promise action을 처리하는 함수
 const promise = store => next => action => {
   if (typeof action.then === "function") {
     return action.then(next);
@@ -92,6 +94,7 @@ const promise = store => next => action => {
   return next(action);
 };
 
+// 미들웨어에 dispatch까지 주입(실행)한 함수
 const wrapDispatchWithMiddlewares = (store, middlewares) =>
   middlewares
     .slice()
@@ -100,6 +103,7 @@ const wrapDispatchWithMiddlewares = (store, middlewares) =>
       store.dispatch = middleware(store)(store.dispatch);
     });
 
+// store 설정
 const configureStore = () => {
   const store = createStore(todoApp);
   const middlewares = [promise];
