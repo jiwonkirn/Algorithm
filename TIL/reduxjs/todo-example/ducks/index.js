@@ -1,3 +1,5 @@
+import { normalize } from "normalizr";
+import * as schema from "./schema";
 import { combineReducers } from "redux";
 import * as api from "../api";
 
@@ -47,7 +49,7 @@ export const fetchTodos = filter => (dispatch, getState) => {
       dispatch({
         type: "FETCH_TODOS_SUCCESS",
         filter,
-        response
+        response: normalize(response, schema.arrayOfTodos)
       });
     },
     error => {
@@ -65,12 +67,15 @@ export const addTodo = text => dispatch =>
   api.addTodo(text).then(response => {
     dispatch({
       type: "ADD_TODO_SUCCESS",
-      response
+      response: normalize(response, schema.todo)
     });
   });
 
 // toggle todo
-export const toggleTodo = id => ({
-  type: "TOGGLE_TODO",
-  id
-});
+export const toggleTodo = id => dispatch =>
+  api.toggleTodo(id).then(response => {
+    dispatch({
+      type: "TOGGLE_TODO_SUCCESS",
+      response: normalize(response, schema.todo)
+    });
+  });
