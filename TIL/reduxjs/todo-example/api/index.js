@@ -5,22 +5,22 @@ const fakeDatabase = {
     {
       id: v4(),
       text: "hey",
-      complete: true
+      completed: true
     },
     {
       id: v4(),
       text: "react",
-      complete: true
+      completed: true
     },
     {
       id: v4(),
       text: "redux",
-      complete: false
+      completed: false
     },
     {
       id: v4(),
       text: "redux-saga",
-      complete: false
+      completed: false
     }
   ]
 };
@@ -33,9 +33,9 @@ export const fetchTodos = filter =>
       case "all":
         return fakeDatabase.todos;
       case "active":
-        return fakeDatabase.todos.filter(t => !t.complete);
+        return fakeDatabase.todos.filter(t => !t.completed);
       case "completed":
-        return fakeDatabase.todos.filter(t => t.complete);
+        return fakeDatabase.todos.filter(t => t.completed);
       default:
         throw new Error(`Unknown filter: ${filter}`);
     }
