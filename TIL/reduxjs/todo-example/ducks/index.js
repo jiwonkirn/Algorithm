@@ -26,30 +26,39 @@ export const getVisibleTodos = (state, filter) => {
 export const getIsFetching = (state, filter) =>
   fromList.getIsFetching(state.listByFilter[filter]);
 
+export const getErrorMassage = (state, filter) =>
+  fromList.getErrorMassage(state.listByFilter[filter]);
+
 /* ====== 
   action
   ======= */
-// receive todos
-const receiveTodos = (filter, response) => ({
-  type: "RECEIVE_TODOS",
-  filter,
-  response
-});
-
-export const requestTodos = filter => ({
-  type: "REQUEST_TODOS",
-  filter
-});
 
 export const fetchTodos = filter => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
     return Promise.resolve();
   }
 
-  dispatch(requestTodos(filter));
-  return api.fetchTodos(filter).then(res => {
-    dispatch(receiveTodos(filter, res));
+  dispatch({
+    type: "FETCH_TODOS_REQUEST",
+    filter
   });
+
+  return api.fetchTodos(filter).then(
+    response => {
+      dispatch({
+        type: "FETCH_TODOS_SUCCESS",
+        filter,
+        response
+      });
+    },
+    error => {
+      dispatch({
+        type: "FETCH_TODOS_FAILURE",
+        filter,
+        message: error.message || "Somthing went wrong"
+      });
+    }
+  );
 };
 
 // add todo
