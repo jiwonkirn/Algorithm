@@ -3,10 +3,13 @@ import { combineReducers } from "redux";
 const createList = filter => {
   // 해당하는 필터의 아이디값을 배열로 만드는 함수를 반환하는 함수
   const ids = (state = [], action) => {
-    if (action.filter !== filter) return state;
     switch (action.type) {
       case "FETCH_TODOS_SUCCESS":
-        return action.response.map(todo => todo.id);
+        return filter === action.filter
+          ? action.response.map(todo => todo.id)
+          : state;
+      case "ADD_TODO_SUCCESS":
+        return filter !== "completed" ? [...state, action.response.id] : state;
       default:
         return state;
     }

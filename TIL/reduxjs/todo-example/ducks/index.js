@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { v4 } from "node-uuid";
 import * as api from "../api";
 
 import byId, * as fromById from "./byId";
@@ -62,11 +61,13 @@ export const fetchTodos = filter => (dispatch, getState) => {
 };
 
 // add todo
-export const addTodo = text => ({
-  id: v4(),
-  type: "ADD_TODO",
-  text: text
-});
+export const addTodo = text => dispatch =>
+  api.addTodo(text).then(response => {
+    dispatch({
+      type: "ADD_TODO_SUCCESS",
+      response
+    });
+  });
 
 // toggle todo
 export const toggleTodo = id => ({
