@@ -1,4 +1,3 @@
-```js
 // first
 function solution(A, B) {
   const a = quick(A, "bigger");
@@ -26,4 +25,3 @@ const quick = (arr, howSort) => {
 
   return quick(left, howSort).concat(middle, quick(right, howSort));
 };
-```
