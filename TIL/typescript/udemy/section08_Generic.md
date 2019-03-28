@@ -100,3 +100,115 @@ class SimpleMath<T extends U, U extends string | number> {
   //...
 }
 ```
+
+---
+
+## exercise
+
+Create a generic Map (an Object like an Array, but instead with Key-Value Pairs). The key will always be a string.
+
+Let's keep it simple and only add the following methods to the Map:
+
+```ts
+setItem(key: string, item: T) // should create a new key-value pair
+
+getItem(key: string) // should retrieve the value of the provided key
+clear() // should remove all key-value pairs
+printMap() // should output key-value pairs
+```
+
+The map should be usable like shown below:
+
+```ts
+const numberMap = new MyMap<number>();
+numberMap.setItem("apples", 5);
+numberMap.setItem("bananas", 10);
+numberMap.printMap();
+
+const stringMap = new MyMap<string>();
+stringMap.setItem("name", "Max");
+stringMap.setItem("age", "27");
+stringMap.printMap();
+```
+
+### mine
+
+```ts
+interface Data<T> {
+  [key: string]: T;
+}
+
+class MyMap<T extends string | number> {
+  private _object: Data<T> = {};
+
+  setItem(key: string, item: T): void {
+    this._object[key] = item;
+    return;
+  }
+
+  getItem(key: string): T | undefined {
+    return this._object[key];
+  }
+
+  printMap(): Data<T> {
+    return this._object;
+  }
+
+  clear(): void {
+    this._object = {};
+    return;
+  }
+}
+
+const numberMap = new MyMap<number>();
+numberMap.setItem("apples", 5);
+numberMap.setItem("bananas", 10);
+console.log(numberMap.printMap());
+
+const stringMap = new MyMap<string>();
+stringMap.setItem("name", "jiwon");
+stringMap.setItem("age", "27");
+console.log(stringMap.printMap());
+stringMap.clear();
+console.log(stringMap.printMap());
+```
+
+### teacher's
+
+```ts
+class MyMap<T> {
+  private map: { [key: string]: T } = {};
+
+  setItem(key: string, item: T) {
+    this.map[key] = item;
+  }
+
+  getItem(key: string) {
+    return this.map[key];
+  }
+
+  clear() {
+    this.map = {};
+  }
+
+  printMap() {
+    for (let key in this.map) {
+      console.log(key, this.map[key]);
+    }
+  }
+}
+
+const numberMap = new MyMap<number>();
+numberMap.setItem("apples", 10);
+numberMap.setItem("bananas", 5);
+numberMap.printMap();
+numberMap.clear();
+numberMap.printMap();
+
+const stringMap = new MyMap<string>();
+stringMap.setItem("apples", "10");
+stringMap.setItem("bananas", "5");
+stringMap.printMap();
+stringMap.clear();
+stringMap.printMap();
+```
