@@ -63,3 +63,62 @@ page fault
 page table
 
 ---
+
+## 자료구조
+
+### 선형 자료구조
+
+- stack
+- queue
+- linked list
+
+### 비선형 자료구조
+
+- Tree (이진 트리)
+
+  - tree에 대한 이산수학
+  - 순회
+    - DFS, Stack (재귀로 구현(stack frame), 반복문으로 stack)
+      - 전위 preorder
+      - 중위 inorder
+      - 후위 postorder
+    - BFS
+    - 레벨 순서levelorder
+
+- BST (Binary Search Tree): Search가 최악의 경우 O(n), 대안으로 균형 이진 트리
+
+- 균형 이진 트리 (Balanced Tree, Self balancing)
+
+  - AVL 트리
+  - RED-BLACK 트리
+
+- B-Tree (데이터베이스의 인덱스)
+
+  - 균형 이진 트리 + 하드웨어 아키텍쳐
+
+- Heap (완전 이진트리): 일반적으로 배열로 구현한다.
+
+### Hash (해시)
+
+- Hash Table(map)
+  - Hash function
+  - collision(충돌)
+    - chaining (체이닝)
+    - open-addressing 기법
+
+### Graph (그래프)
+
+- 순회
+
+  - DFS: 깊이 우선 탐색 (stack 기반)
+  - BFS: 너비 우선 탐색 (queue 기반)
+
+- MST(Minimum Spanning Tree): 최소 신장 트리, greedy 알고리즘 기반
+
+  - kruslcal algorithm
+  - prim algorithm
+
+- 최단 경로 문제 (shortest path)
+  - Dijkstra algorithm
+  - Bellman-ford algorithm
+  - floyd-warshall algorithm => Dynamic Programming
