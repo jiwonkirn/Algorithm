@@ -1,13 +1,10 @@
 // first practice
 function whoIsNext(names, r) {
-  if (r <= names.length) {
-    return names[r - 1];
-  }
   const [sub, turn] = goal(r, names.length);
   return names[Math.floor(sub / turn)];
 }
 
-function goal(r, len, acc = len, turn = 2) {
+function goal(r, len, acc = 0, turn = 1) {
   if (r <= acc + len * turn) {
     return [r - acc - 1, turn];
   }
