@@ -1,8 +1,84 @@
-// Todo
-// 우선 연결리스트에서 요소를 뽑는다. (뽑을때부터 2 => 4 => 7로)
-// 배열의 각 자리를 더한다.
-// 배열을 단방향 연결 리스트 형식으로 저장한다.
+/* ================================================
+  third try (runtime: 72.94%, memory: 30.37%)
+================================================= */
+const addTwoNumbers = (l1, l2) => {
+  const resultList = new ListNode(0);
+  let currentList = resultList;
+  while (l1 || l2) {
+    const a = l1 ? l1.val : 0;
+    const b = l2 ? l2.val : 0;
+    let sum = a + b + currentList.val;
+    let rest = 0;
+    if (sum >= 10) {
+      sum -= 10;
+      rest = 1;
+    }
+    currentList.val = sum;
+    if (l1) l1 = l1.next;
+    if (l2) l2 = l2.next;
+    if (l1 || l2 || rest) {
+      currentList.next = new ListNode(rest);
+    }
+    currentList = currentList.next;
+  }
+  return resultList;
+};
 
+/* ============================================
+  second try (runtime: 98.56%, memory: 22.82%)
+============================================== */
+const addTwoNumbers = (l1, l2) => {
+  const resultList = new ListNode(0);
+  let currentList = resultList;
+  while (l1 && l2) {
+    let sum = l1.val + l2.val + currentList.val;
+    let rest = 0;
+    if (sum >= 10) {
+      sum -= 10;
+      rest = 1;
+    }
+    currentList.val = sum;
+    if (l1.next || l2.next || rest) {
+      currentList.next = new ListNode(rest);
+    }
+    currentList = currentList.next;
+    [l1, l2] = [l1.next, l2.next];
+  }
+
+  while (l1) {
+    let sum = currentList.val + l1.val;
+    let rest = 0;
+    if (sum >= 10) {
+      sum -= 10;
+      rest = 1;
+    }
+    if (l1.next || rest) {
+      currentList.next = new ListNode(rest);
+    }
+    currentList.val = sum;
+    currentList = currentList.next;
+    [l1] = [l1.next];
+  }
+  while (l2) {
+    let sum = currentList.val + l2.val;
+    let rest = 0;
+    if (sum >= 10) {
+      sum -= 10;
+      rest = 1;
+    }
+    if (l2.next || rest) {
+      currentList.next = new ListNode(rest);
+    }
+    currentList.val = sum;
+    currentList = currentList.next;
+    [l2] = [l2.next];
+  }
+  return resultList;
+};
+
+/* ============================================
+  first try (runtime: 24.38%, memory: 19.71%)
+============================================== */
 // 최종 결과를 반환하는 함수
 const addTwoNumbers = (l1, l2) => {
   const arr1 = listToArray(l1);
