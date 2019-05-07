@@ -22,6 +22,7 @@ var myAtoi = function(str) {
 };
 
 // other's (76 ms, 100% / 35.6 MB, 88.28%)
+// parseInt는 숫자인 부분만 숫자로 바꿔주다가 문자열을 만나면 변환을 중지한다.
 var myAtoi = function(str) {
   let trimedString = str.trim();
   if (trimedString.length <= 1) {
