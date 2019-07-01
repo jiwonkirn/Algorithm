@@ -20,6 +20,7 @@ brew services start mysql # root 비밀번호 등을 설정.
 mysql_secure_installation
 
 mysql -h localhost -u root -p # mysql 접속
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '패스워드'; # 안되면 워터벤치에 입력
 ```
 
 ### 데이터베이스 생성하기
