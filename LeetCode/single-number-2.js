@@ -14,3 +14,15 @@ var singleNumber = function(nums) {
   }
   for (var i in obj) return Number(i);
 };
+
+// ohter's
+// 모르겠다.... 뭐지
+var singleNumber = function(nums) {
+  var a = 0;
+  var b = 0;
+  for (i = 0; i < nums.length; i++) {
+    a = (a ^ nums[i]) & ~b;
+    b = (b ^ nums[i]) & ~a;
+  }
+  return a;
+};
